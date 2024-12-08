@@ -183,21 +183,24 @@
 		"passwordEmpty": "Password is empty",
 		"passwordInvalid": "Password is not valid",
 		"setNewPassword": "Set New Password"
-	},  "subCategories": {
+	},
+	"subCategories": {
 		"all": "All Sub-Categories",
 		"search": "Search Sub-Categories",
 		"searchPlaceholder": "Sub-Category Name"
-	  },
+	},
 	"errors": {
 		"Error": "Error",
 		"connectionFailed": "Connection Failed",
 		"emailNotRegistered": "Email is not registered",
 		"backendError": "Back-End error",
-		"unknownRoute": "Can't find this route: /api/v1/auth/resetPassword"
+		"unknownRoute": "Can't find this route: /api/v1/auth/resetPassword",
+		"incorrectEmailOrPassword": "Incorrect Email or Password Try Another Combination",
+		"unknownError": "Unknown Error"
 	},
 	"success": {
 		"loginSuccess": "Login Successfully",
 		"registerSuccess": "Account is registered",
-		"addedToCart":"Product added successfully to your cart"
+		"addedToCart": "Product added successfully to your cart"
 	}
 }

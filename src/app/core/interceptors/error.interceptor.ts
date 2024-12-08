@@ -26,6 +26,10 @@ export const errorInterceptor: HttpInterceptorFn = (req, next) => {
           msgError = _TranslateService.instant('errors.backendError');
         } else if (msgError === "Can't find this route: /api/v1/auth/resetPassword") {
           msgError = _TranslateService.instant('errors.unknownRoute');
+        } else if (msgError === "Incorrect email or password") {
+          msgError = _TranslateService.instant('errors.incorrectEmailOrPassword');
+        } else {
+          msgError = _TranslateService.instant("errors.unknownError")
         }
 
         _ToastrService.error(msgError, _TranslateService.instant('errors.Error'));

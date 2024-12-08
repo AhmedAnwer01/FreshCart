@@ -195,7 +195,9 @@
 		"connectionFailed": "فشل الاتصال",
 		"emailNotRegistered": "البريد الإلكتروني غير مسجل",
 		"backendError": "خطأ في الواجهة الخلفية",
-		"unknownRoute": "لا يمكن العثور على هذا المسار: /api/v1/auth/resetPassword"
+		"unknownRoute": "لا يمكن العثور على هذا المسار: /api/v1/auth/resetPassword",
+		"incorrectEmailOrPassword": "خطأ في البريد الالكتروني أو كلمة المرور جرب تركيب اخر",
+		"unknownError": "خطأ غير معروف"
 	},
 	"success": {
 		"loginSuccess": "تم تسجيل الدخول بنجاح",

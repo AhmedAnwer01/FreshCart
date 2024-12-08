@@ -82,6 +82,7 @@ export class LoginComponent implements OnDestroy {
     })
   }
   loginSubmit() {
+
     if (this.loginForm.valid) {
       this.isLoading = true
 
@@ -106,6 +107,12 @@ export class LoginComponent implements OnDestroy {
 
           }
         },
+        error: (err) => {
+          this.isLoading = false
+          this.submitDisabled = true
+          this.msgError = err.error.message
+
+        }
 
       })
 
