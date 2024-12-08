@@ -1,0 +1,35 @@
+<form [formGroup]="cityForm">
+    <div class="form-floating mb-3 position-relative">
+        <input type="text"
+            class="form-control"
+            id="floatingCityInput"
+            formControlName="city"
+            (input)="filterCities()"
+            (focus)="onInputFocus()"
+            placeholder="{{ 'form.selectCityPlaceholder' | translate }}"
+            [class]='{
+            "is-valid":  cityForm.valid  && cityForm.value && ( cityForm.get("city")?.touched || cityForm.get("city")?.dirty ),
+            "is-invalid": cityForm.invalid &&  ( cityForm.get("city")?.touched || cityForm.get("city")?.dirty)
+            }' />
+        <label for="floatingCityInput">{{ 'form.selectCityLabel' | translate }}</label>
+
+        <!-- Dropdown Menu -->
+        @if(filteredCities.length > 0 && cityForm.get('city')?.value) {
+        <ul class="dropdown-menu show position-absolute w-100">
+            @for(city of filteredCities; track city) {
+            <li (click)="selectCity(city)"
+                class="dropdown-item">
+                {{ city }}
+            </li>
+            }
+        </ul>
+        }
+
+        <!-- Validation Error Message -->
+        @if(cityForm.get('city')?.errors?.['oneOf']) {
+        <div>
+            <small class="text-danger">{{ 'form.cityValidationError' | translate }}</small>
+        </div>
+        }
+    </div>
+</form>

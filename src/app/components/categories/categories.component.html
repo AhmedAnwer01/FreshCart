@@ -1,0 +1,37 @@
+<section class="bg-main-light p-5">
+    <h1 class="text-main fs-1 text-center my-5">{{ 'categories.allCategories' | translate }}</h1>
+
+    <!-- <div class="d-flex my-4 align-items-center">
+        <h2 class="text-capitalize mx-4 my-0">{{ 'categories.searchCategories' | translate }}</h2>
+        <input type="search"
+            class="form-control w-25"
+            placeholder="{{ 'categories.categoryName' | translate }}"
+            [(ngModel)]="searchedCategory">
+    </div> -->
+    <div class="row g-4">
+        @for (category of searchCategories(searchedCategory) ; track category._id) {
+        @if(category.name != "Music"){
+
+        <div class="col-md-3">
+
+            <div [routerLink]="['/subCategories',category._id]"
+                class="d-flex rounded-4 shadow align-items-center w-100 img-card justify-content-center position-relative">
+                <img [src]="category.image"
+                    [alt]="category.name"
+                    class="object-fit-contain"
+                    width="200px"
+                    height="300px" />
+                <div width="200px"
+                    height="300px"
+                    class="position-absolute text-white">
+                    <div class="overlay"
+                        [attr.catName]="category.name"
+                        translate>
+                    </div>
+                </div>
+            </div>
+        </div>
+        }
+        }
+    </div>
+</section>

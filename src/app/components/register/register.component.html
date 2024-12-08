@@ -1,0 +1,273 @@
+<section class="register bg-main-light shadow p-5 my-5 rounded-4 w-75 m-auto">
+	<h1 class="fs-2 text-center text-main mb-5">{{ 'register.registerLabel' | translate }}</h1>
+	<form [formGroup]="registerForm"
+		(ngSubmit)="registerSubmit()">
+
+		<div class="my-3"
+			[class]="{
+		'form-floating': dir == 'ltr'
+		}">
+			@if(dir == "ltr"){
+
+			<input type="text"
+				id="floatingInput"
+				class="form-control"
+				placeholder="{{ 'form.userNamePlaceholder' | translate }}"
+				name="name"
+				formControlName="name"
+				[ngClass]="{
+					'is-valid': !registerForm.get('name')?.errors && (registerForm.get('name')?.touched || registerForm.get('name')?.dirty),
+					'is-invalid': registerForm.get('name')?.errors && (registerForm.get('name')?.touched || registerForm.get('name')?.dirty)
+				}" />
+			<label for="floatingInput">{{ 'form.nameLabel' | translate }}</label>
+			}@else if(dir == "rtl"){
+
+			<label for="floatingInput"
+				class=" mb-3 me-auto">{{ 'form.nameLabel' | translate }}</label>
+			<input type="text"
+				id="floatingInput"
+				class="form-control"
+				placeholder="{{ 'form.userNamePlaceholder' | translate }}"
+				name="name"
+				formControlName="name"
+				[ngClass]="{
+					'is-valid': !registerForm.get('name')?.errors && (registerForm.get('name')?.touched || registerForm.get('name')?.dirty),
+					'is-invalid': registerForm.get('name')?.errors && (registerForm.get('name')?.touched || registerForm.get('name')?.dirty)
+				}" />
+			}
+		</div>
+
+		@if(registerForm.get('name')?.errors && (registerForm.get('name')?.touched || registerForm.get('name')?.dirty)){
+
+		<div class="alert alert-danger w-50">
+			@if(registerForm.get('name')?.getError('required')) {
+			<p class="m-0">{{ 'form.nameRequired' | translate }}</p>
+			}
+			@else if (registerForm.get('name')?.getError('minLength')) {
+			<p class="m-0">{{ 'form.nameMinLength' | translate }}</p>
+			}
+			@else if (registerForm.get('name')?.getError('maxLength')) {
+			<p class="m-0">{{ 'form.nameMaxLength' | translate }}</p>
+			}
+		</div>
+		}
+
+		<div class="my-3"
+			[class]="{
+		'form-floating': dir == 'ltr'
+		}">
+			@if(dir == "ltr"){
+
+			<input type="email"
+				class="form-control"
+				id="floatingInput"
+				placeholder="{{ 'form.emailPlaceholder' | translate }}"
+				name="email"
+				formControlName="email"
+				(change)="emailChanged()"
+				[ngClass]="{
+					'is-valid': !registerForm.get('email')?.errors && (registerForm.get('email')?.touched || registerForm.get('email')?.dirty),
+					'is-invalid': registerForm.get('email')?.errors && (registerForm.get('email')?.touched || registerForm.get('email')?.dirty)
+				}" />
+			<label for="floatingInput">{{ 'form.emailLabel' | translate }}</label>
+			}@else if(dir == "rtl"){
+			<label for="floatingInput"
+				class=" mb-3 me-auto">{{ 'form.emailLabel' | translate }}</label>
+			<input type="email"
+				class="form-control"
+				id="floatingInput"
+				placeholder="{{ 'form.emailPlaceholder' | translate }}"
+				name="email"
+				formControlName="email"
+				(change)="emailChanged()"
+				[ngClass]="{
+					'is-valid': !registerForm.get('email')?.errors && (registerForm.get('email')?.touched || registerForm.get('email')?.dirty),
+					'is-invalid': registerForm.get('email')?.errors && (registerForm.get('email')?.touched || registerForm.get('email')?.dirty)
+				}" />
+			}
+		</div>
+
+		@if(registerForm.get('email')?.errors && (registerForm.get('email')?.touched ||
+		registerForm.get('email')?.dirty)){
+
+		<div class="alert alert-danger w-50">
+			@if(registerForm.get('email')?.getError('required')) {
+			<p class="m-0">{{ 'form.emailRequired' | translate }}</p>
+			}
+			@else if (registerForm.get('email')?.getError('email')) {
+			<p class="m-0">{{ 'form.emailInvalid' | translate }}</p>
+			}
+		</div>
+		}
+
+		<div class="my-3"
+			[class]="{
+		'form-floating': dir == 'ltr'
+		}">
+			@if(dir == "ltr"){
+
+			<input [type]="passwordType"
+				class="form-control"
+				id="floatingPassword"
+				placeholder="{{ 'form.passwordPlaceholder' | translate }}"
+				formControlName="password"
+				name="password"
+				[ngClass]="{
+					'is-valid': !registerForm.get('password')?.errors && (registerForm.get('password')?.touched || registerForm.get('password')?.dirty),
+					'is-invalid': registerForm.get('password')?.errors && (registerForm.get('password')?.touched || registerForm.get('password')?.dirty)
+				}" />
+			<label for="floatingPassword">{{ 'form.passwordLabel' | translate }}</label>
+			<div class="see-password"
+				[attr.dir]="dir"
+				(click)="toggleShowPassword()">
+				<i class="bi bi-eye-fill"
+					[class.d-none]="!showPassword"></i>
+				<i class="bi bi-eye-slash-fill"
+					[class.d-none]="showPassword"></i>
+			</div>
+			}@else if(dir == "rtl"){
+			<label for="floatingPassword"
+				class=" mb-3 me-auto">{{ 'form.passwordLabel' | translate }}</label>
+			<div class="position-relative">
+
+				<input [type]="passwordType"
+					class="form-control"
+					id="floatingPassword"
+					placeholder="{{ 'form.passwordPlaceholder' | translate }}"
+					formControlName="password"
+					name="password"
+					[ngClass]="{
+					'is-valid': !registerForm.get('password')?.errors && (registerForm.get('password')?.touched || registerForm.get('password')?.dirty),
+					'is-invalid': registerForm.get('password')?.errors && (registerForm.get('password')?.touched || registerForm.get('password')?.dirty)
+				}" />
+				<div class="see-password"
+					[attr.dir]="dir"
+					(click)="toggleShowPassword()">
+					<i class="bi bi-eye-fill"
+						[class.d-none]="!showPassword"></i>
+					<i class="bi bi-eye-slash-fill"
+						[class.d-none]="showPassword"></i>
+				</div>
+			</div>
+
+			}
+
+		</div>
+
+		@if(registerForm.get('password')?.errors && (registerForm.get('password')?.touched ||
+		registerForm.get('password')?.dirty)){
+
+		<div class="alert alert-danger w-50">
+			@if(registerForm.get('password')?.getError('required')) {
+			<p class="m-0">{{ 'form.passwordRequired' | translate }}</p>
+			}
+			@else if (registerForm.get('password')?.invalid) {
+			<p class="m-0">{{ 'form.passwordInvalid' | translate }}</p>
+			}
+		</div>
+		}
+
+		<div class="my-3"
+			[class]="{
+		'form-floating': dir == 'ltr'
+		}">
+			@if(dir == "ltr"){
+
+			<input [type]="passwordType"
+				class="form-control"
+				id="floatingPassword"
+				formControlName="rePassword"
+				placeholder="{{ 'form.rePasswordPlaceholder' | translate }}"
+				[ngClass]="{
+					'is-valid': !registerForm.get('rePassword')?.getError('compare') && registerForm.get('rePassword')?.dirty && !registerForm.get('rePassword')?.getError('required'),
+					'is-invalid': registerForm.get('rePassword')?.getError('compare') && registerForm.get('rePassword')?.dirty
+				}" />
+			<label for="floatingPassword"
+				name="rePassword">{{ 'form.rePasswordLabel' | translate }}</label>
+			<div class="see-password"
+				[attr.dir]="dir"
+				(click)="toggleShowPassword()">
+				<i class="bi bi-eye-fill"
+					[class.d-none]="!showPassword"></i>
+				<i class="bi bi-eye-slash-fill"
+					[class.d-none]="showPassword"></i>
+			</div>
+			}@else if(dir == "rtl"){
+			<label for="floatingPassword"
+				class=" mb-3 me-auto"
+				name="rePassword">{{ 'form.rePasswordLabel' | translate }}</label>
+			<div class="position-relative">
+
+				<input [type]="passwordType"
+					class="form-control"
+					id="floatingPassword"
+					formControlName="rePassword"
+					placeholder="{{ 'form.rePasswordPlaceholder' | translate }}"
+					[ngClass]="{
+					'is-valid': !registerForm.get('rePassword')?.getError('compare') && registerForm.get('rePassword')?.dirty && !registerForm.get('rePassword')?.getError('required'),
+					'is-invalid': registerForm.get('rePassword')?.getError('compare') && registerForm.get('rePassword')?.dirty
+				}" />
+				<div class="see-password"
+					[attr.dir]="dir"
+					(click)="toggleShowPassword()">
+					<i class="bi bi-eye-fill"
+						[class.d-none]="!showPassword"></i>
+					<i class="bi bi-eye-slash-fill"
+						[class.d-none]="showPassword"></i>
+				</div>
+			</div>
+			}
+		</div>
+
+		@if(registerForm.get('rePassword')?.getError('compare') && registerForm.get('rePassword')?.dirty){
+
+		<div class="alert alert-danger w-50">
+			<p class="m-0">{{ 'form.passwordMismatch' | translate }}</p>
+		</div>
+		}
+
+		<div class="my-3 form-control d-flex justify-content-between align-items-center flex-wrap p-3">
+			<label for="phone">{{ 'form.phoneLabel' | translate }}</label>
+			<ngx-intl-tel-input [preferredCountries]="['eg', 'ps', 'sa']"
+				[cssClass]="'control-form'"
+				dir="ltr"
+				[enableAutoCountrySelect]="true"
+				[enablePlaceholder]="true"
+				[searchCountryFlag]="true"
+				[selectFirstCountry]="false"
+				[maxLength]="15"
+				[phoneValidation]="true"
+				[separateDialCode]="true"
+				[enableAutoCountrySelect]="true"
+				class="phone-input"
+				name="phone"
+				formControlName="phone"
+				searchCountryPlaceholder="Search Country"
+				(countryChange)="phoneChanged()">
+			</ngx-intl-tel-input>
+		</div>
+
+		@if(registerForm.get('phone')?.errors && registerForm.get('phone')?.touched){
+
+		<div class="alert alert-danger w-50">
+			@if(registerForm.get('phone')?.getError('required')) {
+			<p class="m-0">{{ 'form.phoneRequired' | translate }}</p>
+			}
+			@else if (registerForm.get('phone')?.invalid) {
+			<p class="m-0">{{ 'form.phoneInvalid' | translate }}</p>
+			}
+		</div>
+		}
+
+		<button [disabled]="registerForm.invalid || isLoading || submitDisabled"
+			[class]="{'disabled-btn': registerForm.invalid || isLoading || submitDisabled}"
+			type="submit"
+			class="btn-main m-auto d-block my-3 px-5 text-capitalize">
+			@if(isLoading) {
+			<span><i class="fas fa-spin fa-spinner"></i></span>
+			} @else {
+			<span>{{ 'buttons.register' | translate }}</span>
+			}
+		</button>
+	</form>
+</section>

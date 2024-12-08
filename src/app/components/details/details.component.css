@@ -1,0 +1,70 @@
+i {
+    position: relative;
+    display: inline-block;
+    font-size: 1rem;
+    padding-right: 0.1rem;
+    color: #d3d3d3;
+}
+
+.filled {
+    color: var(--rating-color);
+    overflow: hidden;
+    position: absolute;
+    top: 0;
+    left: 0;
+}
+
+
+.product-main-image {
+    .bi-zoom-in {
+        opacity: 0;
+        position: absolute;
+        top: 20px;
+        right: 20px;
+        transition: all 0.3s;
+    }
+
+    &:hover {
+        .bi-zoom-in {
+            opacity: 1;
+        }
+    }
+}
+
+
+.mySwiper2 swiper-slide {
+    width: 25% !important;
+    opacity: 0.5;
+}
+
+.mySwiper2 .swiper-slide-thumb-active {
+    opacity: 1;
+}
+
+.ngxImageZoomContainer, .ngxImageZoomThumbnail {
+    width: 100% !important;
+}
+
+@layer {
+
+    .modal {
+        .modal-dialog, .modal-content {
+            width: 100% !important;
+        }
+
+        .modal-body {
+            width: 100% !important;
+        }
+    }
+
+    lib-ngx-image-zoom img {
+        width: 100% !important;
+    }
+
+    @media (max-width:768px) {
+        .modal {
+            width: 100vw;
+        }
+
+    }
+}

@@ -1,0 +1,70 @@
+.form-control, .form-select {
+    &::selection {
+        background-color: #15151580;
+    }
+
+    &:focus {
+        box-shadow: 0 0 0 0.25rem var(--main-color-lighter) !important;
+
+    }
+}
+
+.product-cat-title {
+    height: 100px;
+    overflow-x: hidden;
+    overflow-y: auto;
+
+}
+
+.cart-btn {
+    transform: translateY(125%);
+    transition: transform 0.3s ease-in;
+}
+
+.product {
+    &:hover {
+        .cart-btn {
+            transform: translateY(0%);
+        }
+    }
+}
+
+
+.card {
+
+    .card-img-top {
+        display: block;
+    }
+
+    swiper-container {
+        display: none;
+    }
+
+    &:hover {
+
+        .card-img-top {
+            display: none;
+        }
+
+        swiper-container {
+            display: block;
+        }
+    }
+
+    .card-body {
+        &:hover {
+            .card-text {
+                transition: all 0.3s;
+                color: var(--main-color);
+            }
+        }
+
+        cursor: pointer;
+    }
+}
+
+@layer {
+    .ngx-pagination .current {
+        background-color: var(--main-color) !important;
+    }
+}

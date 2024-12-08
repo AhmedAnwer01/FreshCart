@@ -1,0 +1,117 @@
+@if(product) {
+<section class="my-5 p-5">
+    <h1 class="fs-1 my-5 text-main text-center">{{ 'productDetails.title' | translate }}</h1>
+    <div class="row align-items-center justify-content-center">
+        <div class="col-md-4">
+            <div class="product-images">
+                <div class="product-main-image position-relative">
+                    <swiper-container slides-per-view="1"
+                        navigation="true"
+                        navigation-type="fraction"
+                        autoplay="true"
+                        speed="1000"
+                        pagination="true"
+                        scrollbar="true"
+                        pagination-clickable="true"
+                        mousewheel-force-to-axis="true"
+                        css-mode="true"
+                        thumbs-swiper=".mySwiper2"
+                        style="--swiper-navigation-color: var(--main-color); --swiper-pagination-color: var(--main-color);">
+                        @for (img of product.images; track $index) {
+                        <swiper-slide>
+                            <img [src]="img"
+                                class="w-100"
+                                [alt]="product.title"
+                                height="500px">
+                            <i class="bi bi-zoom-in text-main fs-1 z-3 cr"
+                                (click)="zoomToImg(img)"
+                                (click)="openImageModal()"></i>
+                        </swiper-slide>
+                        }
+                    </swiper-container>
+                </div>
+                <div class="w-100 d-flex flex-wrap my-3">
+                    <swiper-container class="mySwiper2"
+                        slides-per-view="4">
+                        @for (img of product.images; track $index) {
+                        <swiper-slide class="w-25">
+                            <img [src]="img"
+                                class="w-100"
+                                [alt]="product.title">
+                        </swiper-slide>
+                        }
+                    </swiper-container>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-8 mt-4">
+            <h2 class="fs-2">{{product.title}}</h2>
+            <p class="text-muted p-2 fs-6">{{product.description}}</p>
+            <h3 class="h5 text-main">{{ 'category.category' | translate }}: {{product.category.name}} >
+                {{product.subcategory[0].name}}
+            </h3>
+            <p class="h5">{{ 'productDetails.sold' | translate }}: {{product.sold}}
+                {{'productDetails.times' |translate}}
+            </p>
+            <p class="h5">{{ 'productDetails.availableQuantity' | translate }}: {{product.quantity}}</p>
+            <p class="h5">{{ 'productDetails.rating' | translate }}:
+                <ng-template #t
+                    let-fill="fill">
+                    <i class="fas fa-star rating-color">
+                        @if (fill > 0) {
+                        <i class="fas fa-star rating-color filled"
+                            [style.width.%]="fill"></i>
+                        }
+                    </i>
+                </ng-template>
+                <ngb-rating [(rate)]="product.ratingsAverage"
+                    [starTemplate]="t"
+                    [readonly]="true"
+                    [max]="5"
+                    [class]="{
+                    'ltr' : dir == 'rtl'
+                    }"
+                    [ariaValueText]="ariaValueText" />
+                <span class="text-muted">{{product.ratingsAverage}} ({{product.ratingsQuantity}})</span>
+            </p>
+            <strong class="h5">{{ 'productDetails.price' | translate }}:
+                @if(product.priceAfterDiscount) {
+                <span class="text-decoration-line-through"> {{product.price | currency:'EGP'}} </span> <span
+                    class="text-main"> &nbsp; {{product.priceAfterDiscount | currency:'EGP'}} &nbsp; </span>
+                } @else {
+                <span> &nbsp; {{product.price | currency:'EGP'}} </span>
+                }
+            </strong>
+            <button (click)="addToCart(product.id)"
+                [disabled]="isLoading"
+                [class]="{'disabled' : isLoading}"
+                class="text-capitalize btn-main w-100 my-5 fs-4 py-3 text-white">
+                @if(isLoading) {
+                <span><i class="fas fa-spin fa-spinner"></i></span>
+                } @else {
+                {{ 'productDetails.addToCart' | translate }}
+                }
+            </button>
+        </div>
+    </div>
+</section>
+
+<!-- Modal -->
+<div class="modal fade"
+    [class.show]="zoomedImg"
+    id="ImageModal"
+    tabindex="-1"
+    aria-labelledby="exampleModalLabel"
+    aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-body">
+                <button type="button"
+                    class="btn-close ms-auto d-block"
+                    data-bs-dismiss="modal"
+                    [attr.aria-label]="'modal.close' | translate "></button>
+            </div>
+        </div>
+    </div>
+</div>
+}

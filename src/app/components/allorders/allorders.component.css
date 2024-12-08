@@ -1,0 +1,31 @@
+.orders .order {
+    &:not(&:last-child)::after {
+        content: "";
+        width: 75%;
+        height: 1px;
+        background-color: var(--main-color);
+        margin: 20px auto;
+    }
+}
+.form-select{
+    width: 10vw
+}
+
+@media (min-width: 768px) {
+    .order {
+        position: relative;
+
+        .divider {
+            background-color: var(--main-color);
+            height: 100%;
+            width: 1px;
+            position: relative;
+            margin: 0 auto;
+
+        }
+    }
+}
+
+.order-info .overflow-hidden {
+    text-wrap: pretty;
+}

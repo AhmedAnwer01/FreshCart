@@ -1,0 +1,18 @@
+<div class="vh-100">
+    @if (logged) {
+    <app-nav-blank></app-nav-blank>
+    }
+    @else{
+    <app-nav-auth></app-nav-auth>
+    }
+    <section class="d-flex justify-content-center align-items-center">
+        <div>
+
+            <img src="./assets/images/error.svg"
+                alt="Not Found">
+        </div>
+
+    </section>
+
+    <app-footer></app-footer>
+</div>

@@ -1,0 +1,43 @@
+#products .row {
+    &:not(&:last-child)::after {
+        content: "";
+        width: 75%;
+        height: 1px;
+        background-color: var(--main-color);
+        margin: 20px auto;
+    }
+
+    .control-count {
+        min-width: max-content;
+    }
+
+    button {
+        outline: none;
+        border: none;
+        color: var(--main-color);
+        font-size: 1.2rem;
+
+        &::selection {
+            background-color: var(--light-color);
+        }
+
+        &.quantity {
+
+            &:active {
+                background-color: var(--main-color-lighter);
+            }
+        }
+    }
+}
+
+.cart-footer {
+    font-size: 16px;
+}
+
+@media (max-width : 576px) {
+
+    .cart-footer {
+        font-size: 16px;
+    }
+}
+

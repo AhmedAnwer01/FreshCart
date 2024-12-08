@@ -1,0 +1,17 @@
+@media (max-width: 768px) {
+    .shipping {
+        width: 100% !important;
+        padding: 1rem !important;
+    }
+}
+
+@media (max-width: 400px) {
+    .shipping {
+        padding-right: 0 !important;
+        padding-left: 0 !important;
+    }
+
+    .form-control {
+        padding: 10px !important;
+    }
+}

@@ -1,0 +1,1 @@
+export const APIBaseUrl: string = "https://ecommerce.routemisr.com"

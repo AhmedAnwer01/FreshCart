@@ -1,0 +1,64 @@
+form label {
+    text-transform: capitalize;
+    cursor: pointer;
+
+    &::after {
+        content: " :"
+    }
+}
+
+.form-floating {
+    position: relative;
+}
+
+.see-password {
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+
+    i {
+        font-size: 1.2rem;
+        color: var(--main-color);
+    }
+
+    &[dir='ltr'] {
+        right: 10px;
+    }
+
+    &[dir='rtl'] {
+        left: 10px;
+    }
+}
+
+.alert p {
+    text-transform: capitalize;
+}
+
+.disabled-btn {
+    border: 1px solid var(--main-color);
+    color: var(--main-color);
+    background-color: white;
+}
+
+.is-valid,
+.is-invalid {
+    background: none !important;
+}
+
+@media (max-width: 768px) {
+    .register {
+        width: 100% !important;
+        padding: 1rem !important;
+    }
+}
+
+@media (max-width: 400px) {
+    .register {
+        padding-right: 0 !important;
+        padding-left: 0 !important;
+    }
+
+    .form-control {
+        padding: 10px !important;
+    }
+}

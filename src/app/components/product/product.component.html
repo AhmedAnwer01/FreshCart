@@ -1,0 +1,141 @@
+<section class="bg-main-light p-5 ">
+    <h1 class="text-main text-center text-capitalize fs-1 my-5">{{ 'products.allProducts' | translate }}</h1>
+    <div class="d-flex row justify-content-start g-5 text-start"
+        id="filters">
+        <div class="d-flex justify-content-start align-items-center col-md-6 col-xl-4 px-0 ">
+            <label for="searchInput"
+                class="fw-bold mx-3 text-nowrap px-3">{{ 'products.searchFor' | translate }}:</label>
+            <input [(ngModel)]="searchedProduct"
+                (input)="searchProducts()"
+                type="search"
+                class="form-control w-50 flex-grow-1"
+                id="searchInput"
+                placeholder="{{ 'products.searchPlaceholder' | translate }}"
+                name="search" />
+            <button (click)="searchProducts()"
+                class="btn bi bi-search text-main mx-2"></button>
+        </div>
+        <div class="d-flex align-items-center justify-content-start col-md-6 col-xl-4 px-0">
+            <label for="categoryFilter"
+                class="fw-bold mx-3 text-nowrap px-3">{{ 'products.selectCategory' | translate }}:</label>
+            <select name="categoryFilter"
+                class="form-select form-select-md w-50 flex-grow-1"
+                [(ngModel)]="selectedCategory"
+                (change)="filterByCategory()"
+                aria-label="Default select example">
+                <option class="text-main"
+                    value="">{{ 'products.allCategories' | translate }}</option>
+                @for (category of allCategories; track category._id) {
+                <option [value]="category.name"
+                    [disabled]="category.disabled"
+                    [class]="{'text-main': !category.disabled, 'cr': !category.disabled}">{{ category.name }}</option>
+                }
+            </select>
+        </div>
+        <div class="d-flex align-items-center justify-content-start col-md-6 col-xl-4 px-0">
+            <label for="priceSort"
+                class="fw-bold mx-3 text-nowrap px-3">{{ 'products.sortByPrice' | translate }}:</label>
+            <select name="priceSort"
+                class="form-select form-select-md w-50 flex-grow-1"
+                [(ngModel)]="priceSort"
+                (change)="sortByPrice()"
+                aria-label="Default select example">
+                <option class="text-main"
+                    value="">{{ 'products.price' | translate }}</option>
+                <option class="text-main"
+                    value="highest">{{ 'products.highestPrice' | translate }}</option>
+                <option class="text-main"
+                    value="lowest">{{ 'products.lowestPrice' | translate }}</option>
+            </select>
+        </div>
+    </div>
+
+    <div class="row g-4">
+        <div class="search-products my-5">
+            <div class="row g-4">
+                @if ((resultedProducts | search: searchedProduct | filterCategories: selectedCategory)?.length != 0) {
+                @for (product of resultedProducts | paginate: { itemsPerPage: pagination?.limit, currentPage:
+                pagination?.currentPage, totalItems: pagination?.totalItems }; track product.id) {
+                @if (!product.title.includes("Relaxed Fit")) {
+                <div class="col-xxl-2 col-lg-3 col-md-4 col-sm-6 col-12">
+                    <div class="card cr text-start product p-2">
+                        <div>
+                            <swiper-container slides-per-view="1"
+                                navigation="true"
+                                navigation-type="fraction"
+                                autoplay="true"
+                                speed="500"
+                                pagination="true"
+                                scrollbar="true"
+                                pagination-clickable="true"
+                                mousewheel-force-to-axis="true"
+                                css-mode="true"
+                                autoplay-disable-on-interaction="true"
+                                thumbs-swiper=".mySwiper2"
+                                style="--swiper-navigation-color: var(--main-color); --swiper-pagination-color: var(--main-color);">
+                                @for (img of product.images; track $index) {
+                                <swiper-slide>
+                                    <img [src]="img"
+                                        class="w-100 swiper"
+                                        [alt]="product.title"
+                                        height="250px">
+                                </swiper-slide>
+                                }
+                            </swiper-container>
+                            <img class="card-img-top"
+                                [src]="product.imageCover"
+                                height="250px"
+                                [alt]="product.title" />
+                            <div class="card-body"
+                                [routerLink]="['/details', product._id]">
+                                <div class="product-cat-title">
+                                    <h3 class="small text-main card-title mb-0">{{ product.category.name }}</h3>
+                                    <h4 class="card-text h6">{{ product.title | sliceText: 4 }}</h4>
+                                </div>
+                                <div class="d-flex justify-content-between align-items-center mt-3">
+                                    <span>{{ product.price | currency: "EGP" }}</span>
+                                    <div>
+                                        <span><i class="fas fa-star rating-color cr"></i></span>
+                                        <span>{{ product.ratingsAverage }}</span>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <button class="btn-main w-100 cart-btn"
+                            (click)="addToCart(product.id)"
+                            [disabled]="isLoading"
+                            [class]="{'disabled': isLoading}">
+                            @if (isLoading) {
+                            <span><i class="fas fa-spin fa-spinner"></i></span>
+                            } @else {
+                            {{ 'buttons.addToCart' | translate }}
+                            }
+                        </button>
+                    </div>
+                </div>
+                }
+                }
+                } @else {
+                <div class="my-5">
+                    <h2 class="text-center text-main">{{ 'products.productNotFound' | translate }}</h2>
+                    <p class="fs-5 text-capitalize text-center">{{ 'products.tryOtherProducts' | translate }}</p>
+                </div>
+                }
+
+                <pagination-controls (pageChange)="pageChanged($event); pageNumber = $event"
+                    (pageBoundsCorrection)="pageChanged($event)"
+                    [maxSize]="9"
+                    [directionLinks]="true"
+                    [autoHide]="false"
+                    [responsive]="true"
+                    previousLabel="{{ 'pagination.previous' | translate }}"
+                    nextLabel="{{ 'pagination.next' | translate }}"
+                    screenReaderPaginationLabel="{{ 'pagination.screenReader' | translate }}"
+                    screenReaderPageLabel="{{ 'pagination.page' | translate }}"
+                    screenReaderCurrentLabel="{{ 'pagination.currentPage' | translate }}"
+                    class="d-flex justify-content-end"></pagination-controls>
+
+            </div>
+        </div>
+    </div>
+</section>

@@ -1,0 +1,205 @@
+{
+	"header": {
+		"freshCart": "فريش كارت",
+		"home": "الرئيسية",
+		"products": "المنتجات",
+		"categories": "الأقسام",
+		"brands": "العلامات التجارية",
+		"allOrders": "جميع الطلبات",
+		"language": "اللغة",
+		"english": "الإنجليزية",
+		"arabic": "العربية",
+		"signOut": "تسجيل الخروج"
+	},
+	"categories": {
+		"allCategories": "كل الفئات",
+		"searchCategories": "البحث في الفئات",
+		"categoryName": "اسم الفئة",
+		"popularCategories": "الأقسام الشائعة",
+		"mensFashion": "أزياء الرجال",
+		"womensFashion": "أزياء النساء",
+		"supermarket": "سوبر ماركت",
+		"babyToys": "الألعاب للأطفال",
+		"home": "المنزل",
+		"books": "الكتب",
+		"beautyHealth": "الجمال والصحة",
+		"mobiles": "الهواتف"
+	},
+	"home": {
+		"popularCategories": "الأقسام الشائعة",
+		"popularProducts": "المنتجات الشائعة",
+		"searchProducts": "بحث عن المنتجات",
+		"searchFor": "بحث عن",
+		"searchPlaceholder": "ابحث بواسطة المدخل"
+	},
+	"buttons": {
+		"addToCart": "إضافة إلى السلة",
+		"autoSearch": "بحث تلقائي",
+		"login": "تسجيل الدخول",
+		"register": "إنشاء حساب",
+		"submit": "إرسال"
+	},
+	"form": {
+		"emailLabel": "البريد الإلكتروني",
+		"emailPlaceholder": "name@example.com",
+		"emailRequired": "البريد الإلكتروني فارغ",
+		"emailInvalid": "البريد الإلكتروني غير صالح",
+		"passwordLabel": "كلمة المرور",
+		"passwordPlaceholder": "كلمة المرور",
+		"passwordRequired": "كلمة المرور فارغة",
+		"passwordInvalid": "كلمة المرور غير صالحة",
+		"nameLabel": "الاسم",
+		"namePlaceholder": "اسم المستخدم",
+		"nameRequired": "الاسم فارغ",
+		"nameTooShort": "الاسم أقل من 3 أحرف",
+		"nameTooLong": "الاسم أكثر من 30 حرفًا",
+		"rePasswordLabel": "إعادة إدخال كلمة المرور",
+		"rePasswordPlaceholder": "إعادة إدخال كلمة المرور",
+		"rePasswordInvalid": "كلمات المرور لا تتطابق",
+		"phoneLabel": "الهاتف",
+		"phoneRequired": "الهاتف فارغ",
+		"phoneInvalid": "الهاتف غير صالح",
+		"forgotPassword": "نسيت كلمة المرور؟"
+	},
+	"register": {
+		"registerLabel": "سجل الآن"
+	},
+	"products": {
+		"popularProducts": "المنتجات الشائعة",
+		"searchFor": "بحث عن",
+		"searchPlaceholder": "اسم المنتج",
+		"selectCategory": "اختر فئة",
+		"sortByPrice": "ترتيب حسب السعر",
+		"productNotFound": "لم يتم العثور على المنتج",
+		"tryOtherProducts": "حاول البحث عن منتجات أخرى",
+		"highestPrice": "أعلى سعر",
+		"lowestPrice": "أدنى سعر",
+		"allProducts": "كل المنتجات",
+		"allCategories": "كل الفئات",
+		"price": "السعر"
+	},
+	"productDetails": {
+		"productTitle": "عنوان المنتج",
+		"productDescription": "وصف المنتج",
+		"category": "الفئة",
+		"subcategory": "الفئة الفرعية",
+		"quantity": "الكمية المتاحة",
+		"rating": "التقييم",
+		"sold": "مباع",
+		"price": "السعر",
+		"availableQuantity": "الكمية المتاحة",
+		"addToCart": "إضافة إلى السلة",
+		"title": "تفاصيل المنتج",
+		"times": "مرة"
+	},
+	"footer": {
+		"getApp": "احصل على تطبيق فريش كارت",
+		"appMessage": "سنرسل لك رابطًا، افتحه على هاتفك لتنزيل التطبيق",
+		"emailPlaceholder": "البريد الإلكتروني",
+		"shareAppLink": "شارك رابط التطبيق",
+		"paymentPartners": "شركاء الدفع",
+		"getDeliveries": "احصل على التوصيلات مع فريش كارت"
+	},
+	"cart": {
+		"cartTitle": "سلة التسوق الخاصة بك",
+		"price": "السعر",
+		"totalCartPrice": "إجمالي السعر",
+		"checkOut": "الدفع",
+		"clearCart": "إفراغ السلة",
+		"shopMore": "تسوق المزيد",
+		"cartEmpty": "سلتك فارغة",
+		"addMoreProducts": "أضف المزيد من المنتجات إلى سلتك",
+		"remove": "إزالة",
+		"confirmClearCart": "تأكيد إفراغ السلة",
+		"clearCartConfirmation": "هل أنت متأكد أنك تريد إفراغ السلة؟",
+		"cancel": "إلغاء"
+	},
+	"brands": {
+		"allBrands": "جميع العلامات التجارية",
+		"searchBrands": "البحث عن العلامات التجارية",
+		"searchPlaceholder": "اسم العلامة التجارية"
+	},
+	"orders": {
+		"allOrders": "جميع الطلبات",
+		"noOrders": "لا توجد طلبات حتى الآن",
+		"makeOrder": "قم بعمل طلب",
+		"totalOrders": "إجمالي الطلبات",
+		"singleOrder": "طلب واحد",
+		"multipleOrders": "طلبات",
+		"sortBy": "ترتيب حسب",
+		"latest": "الأحدث",
+		"oldest": "الأقدم",
+		"orderInfo": "معلومات الطلب",
+		"orderId": "معرف الطلب",
+		"createdAt": "تم إنشاؤه في",
+		"status": "الحالة",
+		"delivered": "تم التوصيل",
+		"notDelivered": "لم يتم التوصيل",
+		"shippingAddress": "عنوان الشحن",
+		"payment": "الدفع",
+		"paymentStatus": "حالة الدفع",
+		"paid": "مدفوع",
+		"notPaid": "غير مدفوع",
+		"paymentMethod": "طريقة الدفع",
+		"shippingPrice": "سعر الشحن",
+		"taxPrice": "سعر الضريبة",
+		"totalPrice": "إجمالي السعر"
+	},
+	"shipping": {
+		"shippingAddress": "عنوان الشحن",
+		"firstName": "الاسم الأول",
+		"lastName": "الاسم الأخير",
+		"country": "الدولة",
+		"address": "المنطقة، الشارع، رقم المبنى، الطابق والشقة",
+		"searchCountry": "ابحث عن الدولة",
+		"goToPayment": "الانتقال إلى الدفع",
+		"egypt": "مصر"
+	},
+	"pagination": {
+		"previous": "السابق",
+		"next": "التالي",
+		"screenReader": "تصفح الصفحات",
+		"page": "صفحة",
+		"currentPage": "أنت في الصفحة"
+	},
+	"category": {
+		"category": "الفئة"
+	},
+	"modal": {
+		"close": "إغلاق"
+	},
+	"forgotPassword": {
+		"title": "نسيت كلمة المرور",
+		"enterEmailForVerification": "أدخل عنوان بريدك الإلكتروني للتحقق",
+		"emailEmpty": "البريد الإلكتروني فارغ",
+		"emailInvalid": "البريد الإلكتروني غير صالح",
+		"getResetCode": "الحصول على رمز التحقق",
+		"enterResetCode": "رمز التحقق",
+		"codeEmpty": "الرمز فارغ",
+		"codeInvalid": "الرمز غير صالح",
+		"resetPassword": "إعادة تعيين كلمة المرور",
+		"enterEmail": "أدخل عنوان بريدك الإلكتروني",
+		"newPassword": "كلمة المرور الجديدة",
+		"passwordEmpty": "كلمة المرور فارغة",
+		"passwordInvalid": "كلمة المرور غير صالحة",
+		"setNewPassword": "تعيين كلمة مرور جديدة"
+	},
+
+	"subCategories": {
+		"all": "جميع الفئات الفرعية",
+		"search": "بحث عن الفئات الفرعية",
+		"searchPlaceholder": "اسم الفئة الفرعية"
+	},
+	"errors": {
+		"Error": "خطأ",
+		"connectionFailed": "فشل الاتصال",
+		"emailNotRegistered": "البريد الإلكتروني غير مسجل",
+		"backendError": "خطأ في الواجهة الخلفية",
+		"unknownRoute": "لا يمكن العثور على هذا المسار: /api/v1/auth/resetPassword"
+	},
+	"success": {
+		"loginSuccess": "تم تسجيل الدخول بنجاح",
+		"registerSuccess": "تم تسجيل الحساب بنجاح",
+		"addedToCart": "تم إضافة المنتج الي عربتك بنجاح"
+	}
+}

@@ -1,0 +1,23 @@
+<section class="bg-main-light p-5 ">
+    <h1 class="text-main text-center text-capitalize fs-1 my-5">{{ 'brands.allBrands' | translate }}</h1>
+
+    <div class="d-flex my-4 align-items-center">
+        <h2 class="text-capitalize mx-4 my-0">{{ 'brands.searchBrands' | translate }}</h2>
+        <input type="search"
+            class="form-control w-25"
+            placeholder="{{ 'brands.searchPlaceholder' | translate }}"
+            [(ngModel)]="searchedBrand">
+    </div>
+    <div class="row g-4">
+        @for (brand of searchBrands(searchedBrand); track brand._id) {
+        <div class="col-md-4">
+            <div class="d-flex rounded-4 shadow align-items-center">
+                <img [src]="brand.image"
+                    [alt]="brand.name"
+                    width="100px" />
+                <h3 class="h6 text-main  m-auto">{{ brand.name }}</h3>
+            </div>
+        </div>
+        }
+    </div>
+</section>

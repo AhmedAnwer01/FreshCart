@@ -1,0 +1,338 @@
+/* You can add global styles to this file, and also import other style files */
+@import url("https://fonts.googleapis.com/css2?family=Encode+Sans+Expanded:wght@300&display=swap");
+@import "ngx-owl-carousel-o/lib/styles/scss/owl.carousel";
+@import "ngx-owl-carousel-o/lib/styles/scss/owl.theme.default";
+
+// @import 'ngx-toastr/toastr-bs5-alert';
+
+:root {
+	--main-color: #0aad0a;
+	--main-color-lighter: #0aad0a90;
+	--active-main-color: #11bd11;
+	--light-color: #f0f3f2;
+	--product-hover: #11bd1168;
+	--shadow: rgba(145, 158, 171, 0.2) 0px 2px 4px -1px,
+		rgba(145, 158, 171, 0.14) 0px 4px 5px 0px,
+		rgba(145, 158, 171, 0.12) 0px 1px 10px 0px;
+	--font-family: "Encode Sans Expanded", sans-serif;
+	--rating-color: #ffc908;
+	overflow-x: hidden;
+}
+::selection {
+	background-color: var(--main-color-lighter);
+	color: #fff;
+}
+body {
+	font-family: var(--font-family) !important;
+}
+
+.nav-link {
+	transition: unset !important;
+	border-radius: 5px;
+	margin: 0 3px;
+	&:hover {
+		color: var(--primary-color);
+		outline: 1px solid var(--main-color);
+	}
+	&:active {
+		background-color: var(--main-color);
+		color: var(--light-color) !important;
+	}
+}
+.active-link {
+	background-color: var(--main-color) !important;
+	color: var(--light-color) !important;
+	border-radius: 5px;
+	transition: all 0.125s ease !important;
+	&:active {
+		background-color: var(--active-main-color) !important;
+	}
+}
+
+.rating-color {
+	color: var(--rating-color);
+}
+.cr {
+	cursor: pointer;
+}
+a,
+a:hover {
+	color: black;
+	text-decoration: none;
+}
+
+.product {
+	border-radius: 5px;
+	border: solid 1px var(--main-color) !important;
+	transition: box-shadow 0.5s;
+	overflow: hidden;
+}
+
+.product:hover {
+	box-shadow: 0 0 20px var(--product-hover);
+}
+
+.font-sm {
+	font-size: 12px;
+}
+.text-main {
+	color: var(--main-color) !important;
+}
+.bg-main {
+	background-color: var(--main-color) !important;
+}
+.bg-main-light {
+	background-color: var(--light-color) !important;
+}
+.disabled-btn {
+	border: 1px solid var(--main-color);
+	color: var(--main-color);
+	background-color: white;
+}
+.btn-main {
+	background-color: var(--main-color);
+	padding: 7px 20px;
+	border: 1px solid #ccc;
+	border-radius: 5px;
+	color: #fff;
+	cursor: pointer;
+	transition: background-color 0.5s;
+}
+.btn-main:disabled {
+	cursor: not-allowed;
+	background-color: #ccc;
+}
+.btn-main:disabled:hover {
+	background-color: #ccc;
+}
+.btn-main:hover {
+	background-color: var(--active-main-color);
+}
+.btn-outline-main {
+	border: 1px solid var(--main-color);
+	background-color: #fff;
+	color: var(--main-color);
+	padding: 7px 20px;
+	border-radius: 5px;
+	color: var(--main-color);
+	cursor: pointer;
+	transition: background-color 0.5s;
+}
+.btn-outline-main:disabled {
+	cursor: not-allowed;
+	background-color: #ccc;
+}
+.btn-outline-main:disabled:hover {
+	background-color: #ccc;
+}
+.btn-outline-main:hover {
+	background-color: var(--main-color);
+	color: #fff;
+}
+.btn-outline-main:active {
+	background-color: var(--active-main-color);
+	border: 1px solid var(--active-main-color);
+}
+.form-control,
+.form-select {
+	&::selection {
+		background-color: #15151580;
+	}
+
+	&:focus {
+		box-shadow: 0 0 0 0.25rem var(--main-color-lighter) !important;
+	}
+}
+.rtl {
+	direction: rtl !important;
+}
+.ltr {
+	direction: ltr !important;
+}
+.mat-input {
+	display: flex;
+	flex-direction: column;
+	align-items: flex-start;
+}
+.max-height {
+	height: 100% !important;
+}
+/* Importing Bootstrap SCSS file. */
+@import "bootstrap/scss/bootstrap";
+
+html,
+body {
+	height: 100%;
+}
+body {
+	margin: 0;
+	font-family: Roboto, "Helvetica Neue", sans-serif;
+}
+
+/* Scrollbar ---------------------------*/
+::-webkit-scrollbar {
+	width: 12px;
+	height: 12px;
+}
+
+::-webkit-scrollbar-track {
+	border-radius: 10px;
+	background-color: var(--light-color);
+}
+
+::-webkit-scrollbar-thumb {
+	border: 2px solid var(--main-color);
+	background-color: #fff;
+	border-radius: 10px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+	background: var(--main-color);
+	cursor: grab;
+}
+
+// Toastr -----------------------------------------------
+#toast-container {
+	text-transform: capitalize;
+	position: fixed !important;
+	top: 50px;
+	.ngx-toastr {
+		margin: 10px 0;
+	}
+}
+
+// spinner -----------------------------------
+
+.spinner {
+	width: 300px !important;
+	height: 300px !important;
+	border-radius: 50%;
+	border: 14px solid #0aad0a;
+	animation: spinner-bulqg1 0.8s infinite linear alternate,
+		spinner-oaa3wk 1.6s infinite linear;
+	box-sizing: content-box;
+	& ~ img {
+		width: 300px;
+		height: 300px;
+	}
+}
+
+@media screen and (max-width: 576px) {
+	.spinner {
+		width: 100px !important;
+		height: 100px !important;
+		& ~ img {
+			width: 100px !important;
+			height: 100px !important;
+		}
+	}
+}
+@keyframes spinner-bulqg1 {
+	0% {
+		clip-path: polygon(
+			50% 50%,
+			0 0,
+			50% 0%,
+			50% 0%,
+			50% 0%,
+			50% 0%,
+			50% 0%
+		);
+	}
+
+	12.5% {
+		clip-path: polygon(
+			50% 50%,
+			0 0,
+			50% 0%,
+			100% 0%,
+			100% 0%,
+			100% 0%,
+			100% 0%
+		);
+	}
+
+	25% {
+		clip-path: polygon(
+			50% 50%,
+			0 0,
+			50% 0%,
+			100% 0%,
+			100% 100%,
+			100% 100%,
+			100% 100%
+		);
+	}
+
+	50% {
+		clip-path: polygon(
+			50% 50%,
+			0 0,
+			50% 0%,
+			100% 0%,
+			100% 100%,
+			50% 100%,
+			0% 100%
+		);
+	}
+
+	62.5% {
+		clip-path: polygon(
+			50% 50%,
+			100% 0,
+			100% 0%,
+			100% 0%,
+			100% 100%,
+			50% 100%,
+			0% 100%
+		);
+	}
+
+	75% {
+		clip-path: polygon(
+			50% 50%,
+			100% 100%,
+			100% 100%,
+			100% 100%,
+			100% 100%,
+			50% 100%,
+			0% 100%
+		);
+	}
+
+	100% {
+		clip-path: polygon(
+			50% 50%,
+			50% 100%,
+			50% 100%,
+			50% 100%,
+			50% 100%,
+			50% 100%,
+			0% 100%
+		);
+	}
+}
+
+@keyframes spinner-oaa3wk {
+	0% {
+		transform: scaleY(1) rotate(0deg);
+	}
+
+	49.99% {
+		transform: scaleY(1) rotate(135deg);
+	}
+
+	50% {
+		transform: scaleY(-1) rotate(0deg);
+	}
+
+	100% {
+		transform: scaleY(-1) rotate(-135deg);
+	}
+}
+
+@layer {
+	.ngx-pagination .current {
+		background-color: var(--main-color) !important;
+	}
+}

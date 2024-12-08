@@ -1,0 +1,15 @@
+<div class="image-modal">
+    <button mat-icon-button
+        class="close-button bg-main text-light"
+        (click)="close()">
+        <mat-icon>close</mat-icon>
+    </button>
+    <img [src]="data.imageUrl"
+        [style.transform]="'scale(' + zoomLevel + ') translate(' + translateX + 'px, ' + translateY + 'px)'"
+        (mousedown)="onMouseDown($event)"
+        (mousemove)="onMouseMove($event)"
+        (mouseup)="onMouseUp()"
+        (mouseleave)="onMouseUp()"
+        alt="" />
+
+</div>

@@ -1,0 +1,37 @@
+<section class="bg-main-light p-5">
+    <h1 class="text-main text-center text-capitalize fs-1 my-5">{{ 'subCategories.all' | translate }}</h1>
+
+    <div class="row g-4">
+        <div class="col-md-6">
+            <h2 class="fw-bold fs-3 text-center">{{ category.name }}</h2>
+            <div
+                class="d-flex rounded-4 shadow align-items-center w-100 img-card justify-content-center position-relative">
+                <img [src]="category.image"
+                    [alt]="category.name"
+                    class="object-fit-contain w-100 rounded-4" />
+                <div class="text-white">
+                    <div class="overlay"
+                        [attr.catName]="category.name"></div>
+                </div>
+            </div>
+        </div>
+
+        <div class="col-md-6">
+            <div class="d-flex my-4 align-items-center">
+                <h2 class="text-capitalize mx-4 my-0">{{ 'subCategories.search' | translate }}</h2>
+                <input type="search"
+                    class="form-control w-50"
+                    placeholder="{{ 'subCategories.searchPlaceholder' | translate }}"
+                    [(ngModel)]="searchedSubCategory">
+            </div>
+
+            <div class="row g-4">
+                @for (subCategory of searchSubCategories(); track subCategory._id) {
+                <div class="d-flex rounded-4 shadow align-items-center">
+                    <h3 class="h6 text-main m-auto">{{ subCategory.name }}</h3>
+                </div>
+                }
+            </div>
+        </div>
+    </div>
+</section>

@@ -1,0 +1,113 @@
+<section class="shipping bg-main-light shadow p-5 my-5 rounded-4 w-75 m-auto">
+    <h1 class="text-main fs-1 text-center text-capitalize my-5">{{ 'shipping.shippingAddress' | translate }}</h1>
+
+    <form [formGroup]="shippingForm"
+        (ngSubmit)="submitShippingAddress()">
+        <div class="row px-0">
+            <div class="col-md-6">
+                <div class="form-floating mb-3">
+                    <input type="text"
+                        class="form-control"
+                        id="floatingInput"
+                        placeholder="Ahmed"
+                        name="firstName"
+                        formControlName="firstName"
+                        [class]="{
+                            'is-valid': shippingForm.get('firstName')?.valid  && ( shippingForm.get('firstName')?.touched || shippingForm.get('firstName')?.dirty ),
+                            'is-invalid': shippingForm.get('firstName')?.invalid &&  ( shippingForm.get('firstName')?.touched || shippingForm.get('firstName')?.dirty )
+                        }">
+                    <label for="floatingInput">{{ 'shipping.firstName' | translate }}</label>
+                </div>
+            </div>
+            <div class="col-md-6">
+                <div class="form-floating mb-3">
+                    <input type="text"
+                        class="form-control"
+                        formControlName="lastName"
+                        id="floatingInput"
+                        [class]="{
+                            'is-valid': shippingForm.get('lastName')?.valid && ( shippingForm.get('lastName')?.touched || shippingForm.get('lastName')?.dirty ),
+                            'is-invalid': shippingForm.get('lastName')?.invalid &&  ( shippingForm.get('lastName')?.touched || shippingForm.get('lastName')?.dirty )
+                        }"
+                        placeholder="Anwer"
+                        name="lastName">
+                    <label for="floatingInput">{{ 'shipping.lastName' | translate }}</label>
+                </div>
+            </div>
+        </div>
+
+        <div class="form-floating mb-3">
+            <input type="email"
+                class="form-control"
+                id="floatingInput"
+                [class]="{
+                    'is-valid': shippingForm.get('email')?.valid  && ( shippingForm.get('email')?.touched || shippingForm.get('email')?.dirty ),
+                    'is-invalid': shippingForm.get('email')?.invalid &&  ( shippingForm.get('email')?.touched || shippingForm.get('email')?.dirty )
+                }"
+                placeholder="name@example.com"
+                formControlName="email"
+                name="email">
+            <label for="floatingInput">{{ 'form.emailLabel' | translate }}</label>
+        </div>
+
+        <div class="row">
+            <div class="col-md-6">
+                <div class="form-floating mb-3">
+                    <input type="text"
+                        readonly
+                        class="form-control"
+                        id="floatingPlaintextInput"
+                        placeholder="Egypt"
+                        [value]="'shipping.egypt' | translate">
+                    <label for="floatingPlaintextInput">{{ 'shipping.country' | translate }}</label>
+                </div>
+            </div>
+            <div class="col-md-6">
+                <app-select-city (cityChanged)="onCityChanged($event)"></app-select-city>
+            </div>
+        </div>
+
+        <div class="form-floating mb-3">
+            <input type="text"
+                class="form-control"
+                id="floatingInput"
+                [class]="{
+                    'is-valid': shippingForm.get('address')?.valid  && ( shippingForm.get('address')?.touched || shippingForm.get('address')?.dirty ),
+                    'is-invalid': shippingForm.get('address')?.invalid &&  ( shippingForm.get('address')?.touched || shippingForm.get('address')?.dirty )
+                }"
+                placeholder="District, Street, Building No., Floor and Apartment"
+                name="address"
+                formControlName="address">
+            <label for="form-floating">{{ 'shipping.address' | translate }}</label>
+        </div>
+
+        <div class="my-3 form-control d-flex justify-content-between align-items-center flex-wrap p-3">
+            <label for="phone">{{ 'form.phoneLabel' | translate }}</label>
+            <ngx-intl-tel-input [preferredCountries]="['eg', 'ps', 'sa']"
+                [cssClass]="'control-form'"
+                [enableAutoCountrySelect]="true"
+                [enablePlaceholder]="true"
+                dir="ltr"
+                [searchCountryFlag]="true"
+                [selectFirstCountry]="false"
+                [maxLength]="15"
+                [phoneValidation]="true"
+                [separateDialCode]="true"
+                [enableAutoCountrySelect]="true"
+                class="phone-input"
+                name="phone"
+                formControlName="phone"
+                searchCountryPlaceholder="{{ 'shipping.searchCountry' | translate }}">
+            </ngx-intl-tel-input>
+        </div>
+
+        <button type="submit"
+            class="btn-main m-auto d-block my-3 px-5 text-capitalize"
+            (click)="createOrder()"
+            [disabled]="submitDisabled"
+            [class]="{'disabled': submitDisabled}">
+            {{ 'shipping.goToPayment' | translate }}
+        </button>
+    </form>
+
+</section>

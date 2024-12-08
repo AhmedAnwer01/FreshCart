@@ -1,0 +1,52 @@
+.img-card {
+
+
+    .overlay {
+        transition: all 0.5s;
+        width: 200px;
+        height: 300px;
+        position: relative;
+        /* top: 0; */
+        bottom: 0;
+        opacity: 0;
+
+        &::after {
+            text-align: center;
+            letter-spacing: 2px;
+            line-height: 1.8rem;
+            transition: all 0.5s;
+            background-color: #33333369;
+            content: attr(catName);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            position: absolute;
+            /* top: 0; */
+            right: 0;
+            left: 0;
+            bottom: 0;
+            color: #fff;
+            font-size: 24px;
+            font-weight: bold;
+            transform: scale(1,0);
+            height: 0;
+        }
+
+
+    }
+
+    &:hover {
+
+        .overlay {
+            &::after {
+                transform: scale(1,1);
+                height: 300px;
+            }
+
+            /* transform: translateY(0); */
+            opacity: 1;
+
+        }
+
+    }
+}

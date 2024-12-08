@@ -1,0 +1,258 @@
+<section class="my-2 main">
+    <div class="row g-0">
+        <div class="col-md-9 custom-carousel">
+            <owl-carousel-o [options]="MainCarousel">
+                <ng-template carouselSlide>
+                    <div>
+                        <img src="./assets/images/img1.avif"
+                            height="300px"
+                            class="w-100"
+                            alt="" />
+                    </div>
+                </ng-template>
+                <ng-template carouselSlide>
+                    <div>
+                        <img src="./assets/images/img3.avif"
+                            height="300px"
+                            class="w-100"
+                            alt="" />
+                    </div>
+                </ng-template>
+                <ng-template carouselSlide>
+                    <div>
+                        <img src="./assets/images/img4.avif"
+                            height="300px"
+                            class="w-100"
+                            alt="" />
+                    </div>
+                </ng-template>
+                <ng-template carouselSlide>
+                    <div>
+                        <img src="./assets/images/img5.avif"
+                            height="300px"
+                            class="w-100"
+                            alt="" />
+                    </div>
+                </ng-template>
+                <ng-template carouselSlide>
+                    <div>
+                        <img src="./assets/images/img6.avif"
+                            height="300px"
+                            class="w-100"
+                            alt="" />
+                    </div>
+                </ng-template>
+            </owl-carousel-o>
+        </div>
+        <div class="col-md-3">
+            <div>
+                <img src="./assets/images/grocery-banner.png"
+                    height="150px"
+                    class="w-100"
+                    alt="" />
+            </div>
+            <div>
+                <img src="./assets/images/grocery-banner-2.jpeg"
+                    height="150px"
+                    class="w-100"
+                    alt="" />
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- -----------Categories-------------- -->
+
+<section class="my-2 custom-carousel">
+    <h2>{{ 'home.popularCategories' | translate }}</h2>
+    <owl-carousel-o [options]="categoriesCarousel">
+        @for (category of allCategories ; track category._id) {
+        @if(category?.name !== "Music" ){
+
+        <ng-template carouselSlide>
+            <div>
+                <img [src]="category.image"
+                    [alt]="category.name"
+                    height="200px" />
+                <h3 class="h6 text-main text-center">{{ category.name }}</h3>
+            </div>
+        </ng-template>
+        }
+        }
+    </owl-carousel-o>
+</section>
+
+<!-- ------------Products--------------- -->
+
+<section class="p-5">
+    <div class="popular-products my-5">
+        <h2 class="fs-1 my-3 text-capitalize">{{ 'home.popularProducts' | translate }}</h2>
+        <div class="row g-4">
+            @for (product of bestProducts ; track product.id) {
+            @if(!product.title.includes("Relaxed Fit")){
+            <div class="col-xxl-2 col-lg-3 col-md-4 col-sm-6 col-12">
+                <div class="card cr text-start product p-2">
+                    <div [class.on-sale]="product.priceAfterDiscount ? true : false"></div>
+                    <div>
+                        <swiper-container slides-per-view="1"
+                            navigation="true"
+                            navigation-type="fraction"
+                            autoplay="true"
+                            autoplay-pause-on-mouse-enter="true"
+                            speed="500"
+                            pagination="true"
+                            scrollbar="true"
+                            pagination-clickable="true"
+                            mousewheel-force-to-axis="true"
+                            autoplay-disable-on-interaction="true"
+                            [dir]="dir"
+                            css-mode="true"
+                            thumbs-swiper=".mySwiper2"
+                            style="--swiper-navigation-color: var(--main-color); --swiper-pagination-color: var(--main-color);">
+                            @for (img of product.images; track $index) {
+                            <swiper-slide>
+                                <img [src]="img"
+                                    class="w-100 swiper"
+                                    [alt]="product.title"
+                                    height="250px" />
+                            </swiper-slide>
+                            }
+                        </swiper-container>
+
+                        <img [src]="product.imageCover"
+                            [alt]="product.title"
+                            height="250px"
+                            class="card-img-top" />
+
+                        <div class="card-body"
+                            [routerLink]="['/details', product._id]">
+                            <div class="product-cat-title">
+                                <h3 class="small text-main card-title mb-0">{{ product.category.name }}</h3>
+                                <h4 class="card-text h6">{{ product.title | sliceText : 4 }}</h4>
+                            </div>
+                            <div class="d-flex justify-content-between align-items-center mt-3">
+                                @if(product.priceAfterDiscount){
+                                <span class="text-main">{{product.priceAfterDiscount | currency:'EGP'}}</span>
+                                }@else{
+                                <span>{{product.price | currency:'EGP'}}</span>
+                                }
+                                <div>
+                                    <span><i class="fas fa-star rating-color cr"></i></span>
+                                    <span>{{ product.ratingsAverage }}</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <button class="btn-main w-100 cart-btn"
+                        (click)="addToCart(product.id)"
+                        [disabled]="isLoading"
+                        [class]="{ 'disabled' : isLoading }">
+                        @if(isLoading){
+                        <span><i class="fas fa-spin fa-spinner"></i></span>
+                        }@else{
+                        {{ 'buttons.addToCart' | translate }}
+                        }
+                    </button>
+                </div>
+            </div>
+            } }
+        </div>
+    </div>
+
+    <!-- ----------------- Search Products--------------------------  -->
+
+    <div class="search-products my-5">
+        <h2 class="fs-1 my-3 text-capitalize">{{ 'home.searchProducts' | translate }}</h2>
+
+        <div class="d-flex justify-content-start align-items-center py-5">
+            <label for="searchInput"
+                class="p-2 px-3">{{ 'home.searchFor' | translate }}</label>
+
+            <input [(ngModel)]="searchedProduct"
+                type="search"
+                class="form-control w-25"
+                id="searchInput"
+                placeholder="{{ 'home.searchPlaceholder' | translate }}"
+                name="search"
+                (change)="searchProductsAuto()" />
+            <button (click)="searchProducts()"
+                class="btn bi bi-search text-main mx-2"></button>
+            <button class="btn-outline-main"
+                (click)="toggleAutoSearch()"
+                [class]="{ 'bg-main': autoSearch, 'text-white': autoSearch }">
+                {{ 'buttons.autoSearch' | translate }}
+            </button>
+        </div>
+        <div class="row g-4">
+            @for (product of resultedProducts ; track product.id) {
+            @if(!product.title.includes("Relaxed Fit")){
+            <div class="col-xxl-2 col-lg-3 col-md-4 col-sm-6 col-12">
+                <div class="card cr text-start product p-2">
+                    <div [class.on-sale]="product.priceAfterDiscount ? true : false"></div>
+                    <div>
+                        <swiper-container slides-per-view="1"
+                            navigation="true"
+                            navigation-type="fraction"
+                            autoplay="true"
+                            speed="500"
+                            pagination="true"
+                            scrollbar="true"
+                            pagination-clickable="true"
+                            mousewheel-force-to-axis="true"
+                            css-mode="true"
+                            autoplay-disable-on-interaction="true"
+                            [dir]="_NgxTranslateService.dir"
+                            thumbs-swiper=".mySwiper2"
+                            style="--swiper-navigation-color: var(--main-color); --swiper-pagination-color: var(--main-color);">
+                            @for (img of product.images; track $index) {
+                            <swiper-slide>
+                                <img [src]="img"
+                                    class="w-100 swiper"
+                                    [alt]="product.title"
+                                    height="250px" />
+                            </swiper-slide>
+                            }
+                        </swiper-container>
+
+                        <img class="card-img-top"
+                            [src]="product.imageCover"
+                            height="250px"
+                            [alt]="product.title" />
+
+                        <div class="card-body"
+                            [routerLink]="['/details', product._id]">
+                            <div class="product-cat-title">
+                                <h3 class="small text-main card-title mb-0">{{ product.category.name }}</h3>
+                                <h4 class="card-text h6">{{ product.title | sliceText : 4 }}</h4>
+                            </div>
+                            <div class="d-flex justify-content-between align-items-center mt-3">
+                                @if(product.priceAfterDiscount){
+                                <span class="text-main">{{product.priceAfterDiscount | currency:'EGP'}}</span>
+                                }@else{
+                                <span>{{product.price | currency:'EGP'}}</span>
+                                }
+                                <div>
+                                    <span><i class="fas fa-star rating-color cr"></i></span>
+                                    <span>{{ product.ratingsAverage }}</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <button class="btn-main w-100 cart-btn"
+                        (click)="addToCart(product.id)"
+                        [disabled]="isLoading"
+                        [class]="{ 'disabled' : isLoading }">
+                        @if(isLoading){
+                        <span><i class="fas fa-spin fa-spinner"></i></span>
+                        }@else{
+                        {{ 'buttons.addToCart' | translate }}
+                        }
+                    </button>
+                </div>
+            </div>
+            } }
+        </div>
+    </div>
+</section>

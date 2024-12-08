@@ -1,0 +1,112 @@
+<section class="bg-main-light rounded-4 p-4 shadow my-4">
+    <h1 class="fs-1 text-center text-main text-capitalize">{{ 'cart.cartTitle' | translate }}</h1>
+
+    @if(cart.numOfCartItems > 0) {
+    <div id="products">
+        @for (productInfo of cart.data?.products; track productInfo._id) {
+        <div class="row my-3">
+            <div class="col-3 col-md-2 col-xl-1">
+                <div [routerLink]="['/details', productInfo.product._id]"
+                    class="cr">
+                    <img [src]="productInfo.product.imageCover"
+                        [alt]="productInfo.product.title"
+                        class="w-100">
+                </div>
+            </div>
+            <div class="col-9 col-md-10 col-xl-11 d-flex justify-content-between align-items-center">
+                <div>
+                    <h2>{{ productInfo.product.title | sliceText:3 }}</h2>
+                    <p class="fs-6">{{ 'cart.price' | translate }}: <span class="text-main"> E{{ productInfo.price |
+                            currency: "GBP" }} </span></p>
+
+                    <div class="d-flex justify-content-start align-items-center cr"
+                        (click)="removeProduct(productInfo.product.id)">
+                        <button class="px-0">
+                            <i class="fas fa-trash text-danger"></i>
+                        </button>
+                        <span class="px-1">{{ 'cart.remove' | translate }}</span>
+                    </div>
+                </div>
+                <div class="control-count d-flex align-items-center">
+                    <button class="quantity plus"
+                        (click)="updateProductCount(productInfo.product.id, productInfo.count + 1)">
+                        <i class="fas fa-plus-circle fa-xl"></i>
+                    </button>
+                    <span class="fw-bold fs-6">{{ productInfo.count }}</span>
+                    <button class="quantity minus"
+                        (click)="updateProductCount(productInfo.product.id, productInfo.count - 1)">
+                        <i class="fas fa-minus-circle fa-xl"></i>
+                    </button>
+                </div>
+            </div>
+        </div>
+        }
+    </div>
+
+    <div class="cart-footer">
+        <div class="d-flex justify-content-between align-items-center">
+            <span>{{ 'cart.totalCartPrice' | translate }}: <span class="text-main fw-bold"> E{{ cart.data.totalCartPrice
+                    | currency: "GBP" }} </span></span>
+            <button [routerLink]="['/shipping', cart.cartId]"
+                class="text-capitalize btn-outline-main px-md-5 py-2"
+                [disabled]="!checkOutBtn"
+                [class]="{'disabled': !checkOutBtn}">
+
+                @if(isLoading) {
+                <span><i class="fas fa-spin fa-spinner"></i></span>
+                }
+                @else {
+                {{ 'cart.checkOut' | translate }}
+                }
+            </button>
+        </div>
+        <div>
+            <button class="btn btn-outline-danger"
+                data-bs-toggle="modal"
+                data-bs-target="#confirmClearCart">{{ 'cart.clearCart' | translate }}</button>
+            <button class="btn-main m-2"
+                routerLink="/home">{{ 'cart.shopMore' | translate }}</button>
+        </div>
+    </div>
+    }
+    @else {
+    <div class="w-100 text-center my-5">
+        <h2 class="text-capitalize text-main">{{ 'cart.cartEmpty' | translate }}</h2>
+        <h3 class="text-capitalize">{{ 'cart.addMoreProducts' | translate }}</h3>
+        <button class="btn-main"
+            routerLink="/home">{{ 'cart.shopMore' | translate }}</button>
+    </div>
+    }
+
+    <!-- Modal -->
+    <div class="modal fade"
+        id="confirmClearCart"
+        tabindex="-1"
+        aria-labelledby="confirmClearCart"
+        aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered">
+            <div class="modal-content">
+                <div class="modal-header d-flex justify-content-between align-items-center ">
+                    <h1 class="modal-title fs-5"
+                        id="confirmClearCartLabel">{{ 'cart.confirmClearCart' | translate }}</h1>
+                    <button type="button"
+                        class="btn-close m-0"
+                        data-bs-dismiss="modal"
+                        aria-label="Close"></button>
+                </div>
+                <div class="modal-body text-capitalize">
+                    {{ 'cart.clearCartConfirmation' | translate }}
+                </div>
+                <div class="modal-footer">
+                    <button type="button"
+                        class="btn btn-secondary"
+                        data-bs-dismiss="modal">{{ 'cart.cancel' | translate }}</button>
+                    <button type="button"
+                        class="btn btn-danger"
+                        data-bs-dismiss="modal"
+                        (click)="clearCart()">{{ 'cart.confirmClearCart' | translate }}</button>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>

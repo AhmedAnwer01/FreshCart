@@ -1,0 +1,203 @@
+{
+	"header": {
+		"freshCart": "FreshCart",
+		"home": "Home",
+		"products": "Products",
+		"categories": "Categories",
+		"brands": "Brands",
+		"allOrders": "All Orders",
+		"language": "Lang",
+		"english": "English",
+		"arabic": "العربية",
+		"signOut": "Sign Out"
+	},
+	"categories": {
+		"allCategories": "All Categories",
+		"searchCategories": "Search Categories",
+		"categoryName": "Category Name",
+		"popularCategories": "Popular Categories",
+		"mensFashion": "Men's Fashion",
+		"womensFashion": "Women's Fashion",
+		"supermarket": "Supermarket",
+		"babyToys": "Baby & Toys",
+		"home": "Home",
+		"books": "Books",
+		"beautyHealth": "Beauty & Health",
+		"mobiles": "Mobiles"
+	},
+	"home": {
+		"popularCategories": "Popular Categories",
+		"popularProducts": "Popular Products",
+		"searchProducts": "Search Products",
+		"searchFor": "Search For",
+		"searchPlaceholder": "Search By Input"
+	},
+	"buttons": {
+		"addToCart": "Add To Cart",
+		"autoSearch": "Auto Search",
+		"login": "Login",
+		"register": "Register",
+		"submit": "Submit"
+	},
+	"form": {
+		"emailLabel": "Email address",
+		"emailPlaceholder": "name@example.com",
+		"emailRequired": "Email is empty",
+		"emailInvalid": "Email is not valid",
+		"passwordLabel": "Password",
+		"passwordPlaceholder": "Password",
+		"passwordRequired": "Password is empty",
+		"passwordInvalid": "Password is not valid",
+		"nameLabel": "Name",
+		"namePlaceholder": "UserName",
+		"nameRequired": "Name is empty",
+		"nameTooShort": "Name is less than 3 characters",
+		"nameTooLong": "Name is more than 30 characters",
+		"rePasswordLabel": "Re-enter Password",
+		"rePasswordPlaceholder": "Re-enter Password",
+		"rePasswordInvalid": "Passwords do not match",
+		"phoneLabel": "Phone",
+		"phoneRequired": "Phone is empty",
+		"phoneInvalid": "Phone is not valid",
+		"forgotPassword": "Forgot Password?"
+	},
+	"register": {
+		"registerLabel": "Register Now"
+	},
+	"products": {
+		"popularProducts": "Popular Products",
+		"searchFor": "Search For",
+		"searchPlaceholder": "Product Name",
+		"selectCategory": "Select Category",
+		"sortByPrice": "Sort By Price",
+		"productNotFound": "Product Not Found",
+		"tryOtherProducts": "Try searching For other Products",
+		"highestPrice": "Highest Price",
+		"lowestPrice": "Lowest Price",
+		"allProducts": "All Products",
+		"allCategories": "All Categories",
+		"price": "Price"
+	},
+	"productDetails": {
+		"productTitle": "Product Title",
+		"productDescription": "Product Description",
+		"category": "Category",
+		"subcategory": "Subcategory",
+		"quantity": "Available Quantity",
+		"rating": "Rating",
+		"sold": "Sold",
+		"price": "Price",
+		"availableQuantity": "Available Quantity",
+		"addToCart": "Add To Cart",
+		"title": "Product Details",
+		"times": "Times"
+	},
+	"footer": {
+		"getApp": "Get The FreshCart App",
+		"appMessage": "We Will Send You a Link, Open it on Your Phone to download the app",
+		"emailPlaceholder": "Email",
+		"shareAppLink": "Share App Link",
+		"paymentPartners": "Payment partners",
+		"getDeliveries": "Get Deliveries with FreshCart"
+	},
+	"cart": {
+		"cartTitle": "Your Cart",
+		"price": "Price",
+		"totalCartPrice": "Total Price",
+		"checkOut": "Check Out",
+		"clearCart": "Clear Cart",
+		"shopMore": "Shop More",
+		"cartEmpty": "Your cart is empty",
+		"addMoreProducts": "Add more products to your cart",
+		"remove": "Remove",
+		"confirmClearCart": "Confirm Clear Cart",
+		"clearCartConfirmation": "Are you sure you want to clear the cart?",
+		"cancel": "Cancel"
+	},
+	"brands": {
+		"allBrands": "All Brands",
+		"searchBrands": "Search Brands",
+		"searchPlaceholder": "Brand Name"
+	},
+	"orders": {
+		"allOrders": "All Orders",
+		"noOrders": "There are no orders done yet",
+		"makeOrder": "Make an Order",
+		"totalOrders": "Total Orders",
+		"singleOrder": "1 Order",
+		"multipleOrders": "Orders",
+		"sortBy": "Sort By",
+		"latest": "Latest",
+		"oldest": "Oldest",
+		"orderInfo": "Order Info",
+		"orderId": "Order ID",
+		"createdAt": "Created At",
+		"status": "Status",
+		"delivered": "Delivered",
+		"notDelivered": "Not Delivered",
+		"shippingAddress": "Shipping Address",
+		"payment": "Payment",
+		"paymentStatus": "Payment Status",
+		"paid": "Paid",
+		"notPaid": "Not Paid",
+		"paymentMethod": "Payment Method",
+		"shippingPrice": "Shipping Price",
+		"taxPrice": "Tax Price",
+		"totalPrice": "Total Price"
+	},
+	"shipping": {
+		"shippingAddress": "Shipping Address",
+		"firstName": "First Name",
+		"lastName": "Last Name",
+		"country": "Country",
+		"address": "District, Street, Building No., Floor and Apartment",
+		"searchCountry": "Search Country",
+		"goToPayment": "Go to Payment",
+		"egypt": "Egypt"
+	},
+	"pagination": {
+		"previous": "Previous",
+		"next": "Next",
+		"screenReader": "Pagination",
+		"page": "page",
+		"currentPage": "You're on page"
+	},
+	"category": {
+		"category": "Category"
+	},
+	"modal": {
+		"close": "Close"
+	},
+	"forgotPassword": {
+		"title": "Forgot Password",
+		"enterEmailForVerification": "Enter Your Email address For Verification",
+		"emailEmpty": "Email is empty",
+		"emailInvalid": "Email is not valid",
+		"getResetCode": "Get Reset Code",
+		"enterResetCode": "Reset Code",
+		"codeEmpty": "Code is empty",
+		"codeInvalid": "Code is not valid",
+		"resetPassword": "Reset Password",
+		"enterEmail": "Enter Your Email address",
+		"newPassword": "New Password",
+		"passwordEmpty": "Password is empty",
+		"passwordInvalid": "Password is not valid",
+		"setNewPassword": "Set New Password"
+	},  "subCategories": {
+		"all": "All Sub-Categories",
+		"search": "Search Sub-Categories",
+		"searchPlaceholder": "Sub-Category Name"
+	  },
+	"errors": {
+		"Error": "Error",
+		"connectionFailed": "Connection Failed",
+		"emailNotRegistered": "Email is not registered",
+		"backendError": "Back-End error",
+		"unknownRoute": "Can't find this route: /api/v1/auth/resetPassword"
+	},
+	"success": {
+		"loginSuccess": "Login Successfully",
+		"registerSuccess": "Account is registered",
+		"addedToCart":"Product added successfully to your cart"
+	}
+}
