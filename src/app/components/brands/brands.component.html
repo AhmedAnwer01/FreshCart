@@ -7,10 +7,14 @@
             class="form-control w-25"
             placeholder="{{ 'brands.searchPlaceholder' | translate }}"
             [(ngModel)]="searchedBrand">
+        <button (click)="searchBrands(searchedBrand)"
+            class="btn bi bi-search text-main mx-2"></button>
     </div>
+    @if(searchBrands(searchedBrand)){
+
     <div class="row g-4">
         @for (brand of searchBrands(searchedBrand); track brand._id) {
-        <div class="col-md-4">
+        <div class="col-sm-6 col-md-4 col-xl-3">
             <div class="d-flex rounded-4 shadow align-items-center">
                 <img [src]="brand.image"
                     [alt]="brand.name"
@@ -20,4 +24,11 @@
         </div>
         }
     </div>
+    }
+    @if(searchedBrand != "" && resultedBrands.length == 0) {
+    <div class="noBrands text-center text-capitalize my-5">
+        <h2 class=" text-main fs-4">{{ 'brands.noBrands' | translate }}</h2>
+        <p>{{ 'brands.noBrandsMessage' | translate }}</p>
+    </div>
+    }
 </section>

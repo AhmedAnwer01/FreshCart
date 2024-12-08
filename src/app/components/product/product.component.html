@@ -121,8 +121,9 @@
                     <p class="fs-5 text-capitalize text-center">{{ 'products.tryOtherProducts' | translate }}</p>
                 </div>
                 }
+                @if(!(searchedProduct != "" && resultedProducts.length < pageProductsLimit) || pageNumber != 1 ){
 
-                <pagination-controls (pageChange)="pageChanged($event); pageNumber = $event"
+                    <pagination-controls (pageChange)="pageChanged($event); pageNumber = $event"
                     (pageBoundsCorrection)="pageChanged($event)"
                     [maxSize]="9"
                     [directionLinks]="true"
@@ -134,6 +135,7 @@
                     screenReaderPageLabel="{{ 'pagination.page' | translate }}"
                     screenReaderCurrentLabel="{{ 'pagination.currentPage' | translate }}"
                     class="d-flex justify-content-end"></pagination-controls>
+                }
 
             </div>
         </div>

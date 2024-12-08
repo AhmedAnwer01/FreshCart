@@ -19,6 +19,7 @@ export class BrandsComponent implements OnInit, OnDestroy {
   private readonly _ActivatedRoute = inject(ActivatedRoute)
   allBrands: Ibrand[] = []
   searchedBrand: string = ""
+  resultedBrands : Ibrand[]
 
 
   getAllBrandsSubscribe !: Subscription
@@ -28,14 +29,14 @@ export class BrandsComponent implements OnInit, OnDestroy {
 
       this.allBrands.push(...res['resolver']?.data)
       this.allBrands.push(...res['resolverP2']?.data)
-      // console.log(this.allBrands);
     })
   }
 
   searchBrands(searchedBrand: string): Ibrand[] {
-    return this.allBrands.filter((brand) => {
+    this.resultedBrands = this.allBrands.filter((brand) => {
       return brand.name.toLowerCase().includes(searchedBrand.toLowerCase())
     })
+    return this.resultedBrands
   }
 
   ngOnDestroy(): void {

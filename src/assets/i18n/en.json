@@ -115,6 +115,8 @@
 		"cancel": "Cancel"
 	},
 	"brands": {
+		"noBrands": "There is no brands with this Name",
+		"noBrandsMessage": "Try searching for another brand",
 		"allBrands": "All Brands",
 		"searchBrands": "Search Brands",
 		"searchPlaceholder": "Brand Name"

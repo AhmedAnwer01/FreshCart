@@ -14,7 +14,7 @@
         aria-label="Toggle navigation">
       <i class="bi bi-list"></i>
     </button>
-    <div class="collapse navbar-collapse d-flex justify-content-between"
+    <div class="collapse navbar-collapse justify-content-between"
         id="collapsibleNavId">
       <ul class="navbar-nav  mt-2 mt-lg-0">
         <li class="nav-item">
@@ -73,12 +73,15 @@
         </li>
       </ul>
 
-      <div class="text-capitalize d-flex flex-nowrap justify-content-center align-items-center">
+
+
+      
+      <div class="text-capitalize d-flex flex-nowrap justify-content-start align-items-center pe-4 me-3">
         <label for="filter"
             class="mx-3">{{ 'header.language' | translate }}</label>
         <select name="filter"
             (change)="switchLang()"
-            class="form-select fomr-select-sm"
+            class="form-select fomr-select-sm w-auto" 
             [(ngModel)]="lang"
             aria-label="Default select example">
           <option value="en">{{ 'header.english' | translate }}</option>
