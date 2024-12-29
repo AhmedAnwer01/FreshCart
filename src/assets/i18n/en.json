@@ -55,14 +55,21 @@
 		"nameTooLong": "Name is more than 30 characters",
 		"rePasswordLabel": "Re-enter Password",
 		"rePasswordPlaceholder": "Re-enter Password",
-		"rePasswordInvalid": "Passwords do not match",
+		"passwordMismatch": "Passwords do not match",
 		"phoneLabel": "Phone",
 		"phoneRequired": "Phone is empty",
 		"phoneInvalid": "Phone is not valid",
-		"forgotPassword": "Forgot Password?"
+		"forgotPassword": "Forgot Password?",
+		"userNamePlaceholder" :"Enter Your Name"
 	},
 	"register": {
-		"registerLabel": "Register Now"
+		"registerLabel": "Register Now",
+		"GoToLogin": "Already have an Account?",
+		"login": "Login"
+	},
+	"login": {
+		"GoToRegister": "Don't Have an Account?",
+		"Register": "Register"
 	},
 	"products": {
 		"popularProducts": "Popular Products",
@@ -198,6 +205,7 @@
 		"backendError": "Back-End error",
 		"unknownRoute": "Can't find this route: /api/v1/auth/resetPassword",
 		"incorrectEmailOrPassword": "Incorrect Email or Password Try Another Combination",
+		"AccountAlreadyExists" : "Account Already Exists" ,
 		"unknownError": "Unknown Error"
 	},
 	"success": {

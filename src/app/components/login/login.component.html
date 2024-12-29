@@ -1,130 +1,190 @@
 <section class="login bg-main-light shadow p-5 my-5 rounded-4 w-75 m-auto">
-	<h1 class="fs-2 text-center text-main mb-5 text-capitalize">{{ 'buttons.login' | translate }}</h1>
-	<form [formGroup]="loginForm"
-		(ngSubmit)="loginSubmit()">
-
-		<div class="my-3"
+	<div class="text-center mb-5 text-capitalize">
+		<h1 class="fs-2 text-main">
+			{{ "buttons.login" | translate }}
+		</h1>
+		<p>
+			{{ "login.GoToRegister" | translate }}
+			<span class="text-main cr" routerLink="/register">
+				{{ "login.Register" | translate }}
+			</span>
+		</p>
+	</div>
+	<form [formGroup]="loginForm" (ngSubmit)="loginSubmit()">
+		<!-- Email Input -->
+		<div
+			class="my-3"
 			[class]="{
-		'form-floating': dir == 'ltr' 
-		}">
+				'form-floating': dir == 'ltr'
+			}"
+		>
 			@if(dir == "rtl"){
-			<label for="floatingInput"
-				class="me-atuo mb-3">{{ 'form.emailLabel' | translate }}</label>
+
+			<label for="floatingInput" class="me-atuo mb-3">{{
+				"form.emailLabel" | translate
+			}}</label>
 			}
-			<input type="email"
+			<input
+				type="email"
 				class="form-control"
 				id="floatingInput"
 				placeholder="{{ 'form.emailPlaceholder' | translate }}"
-				name="email"
+				name="Email"
 				formControlName="email"
 				(change)="emailChanged()"
-				[ngClass]=' {
-					"is-valid":  !loginForm.get("email")?.errors &&  ( loginForm.get("email")?.touched || loginForm.get("email")?.dirty ),
-					"is-invalid": loginForm.get("email")?.errors &&  ( loginForm.get("email")?.touched || loginForm.get("email")?.dirty )
-					}' />
+				[ngClass]="{
+					'is-valid':
+						!loginForm.get('email')?.errors &&
+						(loginForm.get('email')?.touched ||
+							loginForm.get('email')?.dirty),
+					'is-invalid':
+						loginForm.get('email')?.errors &&
+						(loginForm.get('email')?.touched ||
+							loginForm.get('email')?.dirty)
+				}"
+			/>
 			@if(dir == "ltr"){
-			<label for="floatingInput"
-				class="me-atuo">{{ 'form.emailLabel' | translate }}</label>
+			<label for="floatingInput" class="me-atuo">{{
+				"form.emailLabel" | translate
+			}}</label>
 			}
 		</div>
 
-		@if( loginForm.get("email")?.errors && ( loginForm.get("email")?.touched || loginForm.get("email")?.dirty ) ){
+		<!-- Email Error -->
+
+		@if( loginForm.get("email")?.errors && ( loginForm.get("email")?.touched
+		|| loginForm.get("email")?.dirty ) ){
 
 		<div class="alert alert-danger w-50">
 			@if( loginForm.get("email")?.getError("required") ){
-			<p class="m-0">{{ 'form.emailRequired' | translate }}</p>
+			<p class="m-0">{{ "form.emailRequired" | translate }}</p>
+			} @else if ( loginForm.get("email")?.getError("email") ){
+			<p class="m-0">{{ "form.emailInvalid" | translate }}</p>
 			}
-			@else if ( loginForm.get("email")?.getError("email") ){
-			<p class="m-0">{{ 'form.emailInvalid' | translate }}</p>
-			}
-
 		</div>
 		}
 
-		<div class=" my-3 position-relative"
+		<!-- Password Input -->
+
+		<div
+			class="my-3 position-relative"
 			[class]="{
-			'form-floating': dir == 'ltr' 
-			}">
+				'form-floating': dir == 'ltr'
+			}"
+		>
 			@if(dir == "rtl"){
-			<label for="floatingPassword"
-				class="me-auto mb-3">{{ 'form.passwordLabel' | translate }}</label>
+			<label for="floatingPassword" class="me-auto mb-3">{{
+				"form.passwordLabel" | translate
+			}}</label>
 
 			<div class="position-relative">
-				<input [type]="passwordType"
+				<input
+					[type]="passwordType"
 					class="form-control"
 					id="floatingPassword"
 					placeholder="{{ 'form.passwordPlaceholder' | translate }}"
 					formControlName="password"
 					(change)="passwordChanged()"
 					name="password"
-					[ngClass]=' {
-						"is-valid":  !loginForm.get("password")?.errors &&  ( loginForm.get("password")?.touched || loginForm.get("password")?.dirty ),
-						"is-invalid": loginForm.get("password")?.errors &&  ( loginForm.get("password")?.touched || loginForm.get("password")?.dirty )
-						}' />
-				<div class="see-password"
+					[ngClass]="{
+						'is-valid':
+							!loginForm.get('password')?.errors &&
+							(loginForm.get('password')?.touched ||
+								loginForm.get('password')?.dirty),
+						'is-invalid':
+							loginForm.get('password')?.errors &&
+							(loginForm.get('password')?.touched ||
+								loginForm.get('password')?.dirty)
+					}"
+				/>
+				<div
+					class="see-password"
 					[attr.dir]="dir"
-					(click)="toggleShowPassword()">
-					<i class="bi bi-eye-fill"
-						[class.d-none]="!showPassword"></i>
-					<i class="bi bi-eye-slash-fill"
-						[class.d-none]="showPassword"></i>
+					(click)="toggleShowPassword()"
+				>
+					<i
+						class="bi bi-eye-fill"
+						[class.d-none]="!showPassword"
+					></i>
+					<i
+						class="bi bi-eye-slash-fill"
+						[class.d-none]="showPassword"
+					></i>
 				</div>
 			</div>
-			}
-			@if(dir == "ltr"){
-			<input [type]="passwordType"
+			} @if(dir == "ltr"){
+			<input
+				[type]="passwordType"
 				class="form-control"
 				id="floatingPassword"
 				placeholder="{{ 'form.passwordPlaceholder' | translate }}"
 				formControlName="password"
 				(change)="passwordChanged()"
 				name="password"
-				[ngClass]=' {
-						"is-valid":  !loginForm.get("password")?.errors &&  ( loginForm.get("password")?.touched || loginForm.get("password")?.dirty ),
-						"is-invalid": loginForm.get("password")?.errors &&  ( loginForm.get("password")?.touched || loginForm.get("password")?.dirty )
-						}' />
-			<label for="floatingPassword"
-				class="me-auto">{{ 'form.passwordLabel' | translate }}</label>
-			<div class="see-password"
+				[ngClass]="{
+					'is-valid':
+						!loginForm.get('password')?.errors &&
+						(loginForm.get('password')?.touched ||
+							loginForm.get('password')?.dirty),
+					'is-invalid':
+						loginForm.get('password')?.errors &&
+						(loginForm.get('password')?.touched ||
+							loginForm.get('password')?.dirty)
+				}"
+			/>
+			<label for="floatingPassword" class="me-auto">{{
+				"form.passwordLabel" | translate
+			}}</label>
+			<div
+				class="see-password"
 				[attr.dir]="dir"
-				(click)="toggleShowPassword()">
-				<i class="bi bi-eye-fill"
-					[class.d-none]="!showPassword"></i>
-				<i class="bi bi-eye-slash-fill"
-					[class.d-none]="showPassword"></i>
+				(click)="toggleShowPassword()"
+			>
+				<i class="bi bi-eye-fill" [class.d-none]="!showPassword"></i>
+				<i
+					class="bi bi-eye-slash-fill"
+					[class.d-none]="showPassword"
+				></i>
 			</div>
 			}
 		</div>
 
-		@if( loginForm.get("password")?.errors && ( loginForm.get("password")?.touched ||
-		loginForm.get("password")?.dirty ) ){
+		<!-- Password Error -->
+
+		@if( loginForm.get("password")?.errors && (
+		loginForm.get("password")?.touched || loginForm.get("password")?.dirty )
+		){
 
 		<div class="alert alert-danger w-50">
 			@if( loginForm.get("password")?.getError("required") ){
-			<p class="m-0">{{ 'form.passwordRequired' | translate }}</p>
+			<p class="m-0">{{ "form.passwordRequired" | translate }}</p>
+			} @else if ( loginForm.get("password")?.invalid ){
+			<p class="m-0">{{ "form.passwordInvalid" | translate }}</p>
 			}
-			@else if ( loginForm.get("password")?.invalid ){
-			<p class="m-0">{{ 'form.passwordInvalid' | translate }}</p>
-			}
-
 		</div>
 		}
 
-		<a routerLink="/forgotPassword"
-			class="text-main text-decoration-none px-3">{{ 'form.forgotPassword' | translate }}</a>
+		<a
+			routerLink="/forgotPassword"
+			class="text-main text-decoration-none px-3"
+			>{{ "form.forgotPassword" | translate }}</a
+		>
 
-		<button [disabled]="loginForm.invalid || isLoading || submitDisabled"
-			[class]="{'disabled-btn': loginForm.invalid || isLoading || submitDisabled}"
+		<!-- Submit Button -->
+
+		<button
+			[disabled]="loginForm.invalid || isLoading || submitDisabled"
+			[class]="{
+				'disabled-btn': loginForm.invalid || isLoading || submitDisabled
+			}"
 			type="submit"
-			class="btn-main m-auto d-block my-3 px-5 text-capitalize">
-
+			class="btn-main m-auto d-block my-3 px-5 text-capitalize"
+		>
 			@if(isLoading){
 			<span><i class="fas fa-spin fa-spinner"></i></span>
-			}
-			@else{
-			<span>{{ 'buttons.login' | translate }}</span>
+			} @else{
+			<span>{{ "buttons.login" | translate }}</span>
 			}
 		</button>
-
 	</form>
 </section>

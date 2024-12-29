@@ -6,7 +6,7 @@ import { AuthenticationService } from '../../core/services/authentication.servic
 import { HttpErrorResponse } from '@angular/common/http';
 import { isPlatformBrowser, NgClass } from '@angular/common';
 import { RxFormBuilder, RxReactiveFormsModule, RxwebValidators } from '@rxweb/reactive-form-validators';
-import { Router } from '@angular/router';
+import { Router, RouterLink } from '@angular/router';
 import { Subscription } from 'rxjs';
 import { ToastrService } from 'ngx-toastr';
 import { TranslateModule, TranslateService } from '@ngx-translate/core';
@@ -15,7 +15,7 @@ import { NgxTranslateService } from '../../core/services/ngxtranslate.service';
 @Component({
   selector: 'app-register',
   standalone: true,
-  imports: [NgxIntlTelInputModule, NgClass, TranslateModule, RxReactiveFormsModule, ReactiveFormsModule],
+  imports: [NgxIntlTelInputModule, NgClass, TranslateModule, RxReactiveFormsModule, ReactiveFormsModule, RouterLink],
   templateUrl: './register.component.html',
   styleUrl: './register.component.css'
 })

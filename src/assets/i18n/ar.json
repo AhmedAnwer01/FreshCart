@@ -55,14 +55,21 @@
 		"nameTooLong": "الاسم أكثر من 30 حرفًا",
 		"rePasswordLabel": "إعادة إدخال كلمة المرور",
 		"rePasswordPlaceholder": "إعادة إدخال كلمة المرور",
-		"rePasswordInvalid": "كلمات المرور لا تتطابق",
+		"passwordMismatch": "كلمات المرور لا تتطابق",
 		"phoneLabel": "الهاتف",
 		"phoneRequired": "الهاتف فارغ",
 		"phoneInvalid": "الهاتف غير صالح",
-		"forgotPassword": "نسيت كلمة المرور؟"
+		"forgotPassword": "نسيت كلمة المرور؟",
+		"userNamePlaceholder": "أدخل أسمك"
 	},
 	"register": {
-		"registerLabel": "سجل الآن"
+		"registerLabel": "سجل الآن",
+		"GoToLogin": "هل لديك حساب بالفعل؟ قم",
+		"login": "تسجيل الدخول"
+	},
+	"login": {
+		"GoToRegister": "ليس لديك حساب؟",
+		"Register": "أنشئ حساب"
 	},
 	"products": {
 		"popularProducts": "المنتجات الشائعة",
@@ -199,6 +206,7 @@
 		"backendError": "خطأ في الواجهة الخلفية",
 		"unknownRoute": "لا يمكن العثور على هذا المسار: /api/v1/auth/resetPassword",
 		"incorrectEmailOrPassword": "خطأ في البريد الالكتروني أو كلمة المرور جرب تركيب اخر",
+		"AccountAlreadyExists": "الحساب موجود بالفعل",
 		"unknownError": "خطأ غير معروف"
 	},
 	"success": {

@@ -27,11 +27,18 @@
     /* Adjust as needed */
 }
 
+@media (max-width : 425px) {
+    .main-carousel {
+        display: none;
+    }
+}
+
 /* --------------------------Products--------------------------- */
 
 .on-sale {
     position: relative;
     z-index: 999;
+
     &::after {
         content: "Sale";
         text-align: center;

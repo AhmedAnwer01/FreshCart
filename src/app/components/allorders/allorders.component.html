@@ -1,55 +1,103 @@
-<section class="bg-main-light p-4 my-4 shadow">
-    <h1 class="text-main fs-2 text-center my-5 text-capitalize">{{ 'orders.allOrders' | translate }}</h1>
+<section class="bg-main-light p-4 my-4 shadow container">
+	<h1 class="text-main fs-2 text-center my-5 text-capitalize">
+		{{ "orders.allOrders" | translate }}
+	</h1>
 
-    @if(allOrders == [] || !allOrders) {
-    <h2 class="text-capitalize text-center fs-4">{{ 'orders.noOrders' | translate }}</h2>
-    <button class="btn-main text-center d-block m-auto text-capitalize"
-        routerLink="\cart">{{ 'orders.makeOrder' | translate }}</button>
-    }
-    @else if(allOrders){
-    <div class="d-flex justify-content-between align-items-center">
-        <h2 class="text-capitalize fs-2 text-main">{{ 'orders.totalOrders' | translate }} :
-            @if(ordersCount == 1){
-            {{ 'orders.singleOrder' | translate }}
-            }@else if(ordersCount > 1){
-            {{ ordersCount }} {{ 'orders.multipleOrders' | translate }}
-            }
-        </h2>
-        <div class="d-flex align-items-center justify-content-around">
-            <label for="filter"
-                class="fw-bold mx-3">{{ 'orders.sortBy' | translate }}</label>
-            <select name="filter"
-                class="form-select fomr-select-sm"
-                [(ngModel)]="selectedFilter"
-                aria-label="Default select example">
-                <option value="Latest">{{ 'orders.latest' | translate }}</option>
-                <option value="Oldest">{{ 'orders.oldest' | translate }}</option>
-            </select>
-        </div>
-    </div>
-    <div class="orders">
-        @for (order of allOrders | sortBy : selectedFilter ; track order.id) {
-        <div class="row text-capitalize order my-4">
-            <div class="col-md-5 order-info">
-                <h3 class="text-main text-center fs-4">{{ 'orders.orderInfo' | translate }} {{ order.index }}</h3>
-                <p class="fw-bold">{{ 'orders.orderId' | translate }} : <span class="text-main">{{ order.id }}</span> </p>
-                <p class="fw-bold">{{ 'orders.createdAt' | translate }} : {{ order.createdAt | date : "medium" }} </p>
-                <p class="fw-bold">{{ 'orders.status' | translate }} : @if(order.isDelivered){ {{ 'orders.delivered' | translate }} }@else{ {{ 'orders.notDelivered' | translate }} } </p>
-                <p class="fw-bold overflow-hidden">{{ 'orders.shippingAddress' | translate }} : {{ order.shippingAddress.details }} </p>
-            </div>
-            <div class="col-md-2">
-                <div class="divider"></div>
-            </div>
-            <div class="col-md-5">
-                <h3 class="text-main text-center fs-4">{{ 'orders.payment' | translate }}</h3>
-                <p class="fw-bold">{{ 'orders.paymentStatus' | translate }} : @if(order.isPaid){ {{ 'orders.paid' | translate }} }@else{ {{ 'orders.notPaid' | translate }} } </p>
-                <p class="fw-bold">{{ 'orders.paymentMethod' | translate }} : {{ order.paymentMethodType }} </p>
-                <p class="fw-bold">{{ 'orders.shippingPrice' | translate }} : {{ order.shippingPrice }} </p>
-                <p class="fw-bold">{{ 'orders.taxPrice' | translate }} : {{ order.taxPrice }} </p>
-                <p class="fw-bold">{{ 'orders.totalPrice' | translate }} : <span class="text-main">{{ order.totalOrderPrice | currency : "EGP" }}</span></p>
-            </div>
-        </div>
-        }
-    </div>
-    }
+	@if(allOrders == [] || !allOrders) {
+	<h2 class="text-capitalize text-center fs-4">
+		{{ "orders.noOrders" | translate }}
+	</h2>
+	<button
+		class="btn-main text-center d-block m-auto text-capitalize"
+		routerLink="\cart"
+	>
+		{{ "orders.makeOrder" | translate }}
+	</button>
+	} @else if(allOrders){
+	<div class="d-flex justify-content-between align-items-center row">
+		<h2 class="text-capitalize fs-2 text-main col-md-6">
+			{{ "orders.totalOrders" | translate }} : @if(ordersCount == 1){
+			{{ "orders.singleOrder" | translate }}
+			}@else if(ordersCount > 1){
+			{{ ordersCount }} {{ "orders.multipleOrders" | translate }}
+			}
+		</h2>
+		<div class="d-flex align-items-center justify-content-center col-md-6">
+			<label for="filter" class="fw-bold mx-3">{{
+				"orders.sortBy" | translate
+			}}</label>
+			<select
+				name="filter"
+				class="form-select fomr-select-sm"
+				[(ngModel)]="selectedFilter"
+				aria-label="Default select example"
+			>
+				<option value="Latest">
+					{{ "orders.latest" | translate }}
+				</option>
+				<option value="Oldest">
+					{{ "orders.oldest" | translate }}
+				</option>
+			</select>
+		</div>
+	</div>
+	<div class="orders">
+		@for (order of allOrders | sortBy : selectedFilter ; track order.id) {
+		<div class="row text-capitalize order my-4">
+			<div class="col-md-5 order-info">
+				<h3 class="text-main text-center fs-4">
+					{{ "orders.orderInfo" | translate }} {{ order.index }}
+				</h3>
+				<p class="fw-bold">
+					{{ "orders.orderId" | translate }} :
+					<span class="text-main">{{ order.id }}</span>
+				</p>
+				<p class="fw-bold">
+					{{ "orders.createdAt" | translate }} :
+					{{ order.createdAt | date : "medium" }}
+				</p>
+				<p class="fw-bold">
+					{{ "orders.status" | translate }} : @if(order.isDelivered){
+					{{ "orders.delivered" | translate }} }@else{
+					{{ "orders.notDelivered" | translate }} }
+				</p>
+				<p class="fw-bold overflow-hidden">
+					{{ "orders.shippingAddress" | translate }} :
+					{{ order.shippingAddress.details }}
+				</p>
+			</div>
+			<div class="col-md-2">
+				<div class="divider"></div>
+			</div>
+			<div class="col-md-5">
+				<h3 class="text-main text-center fs-4">
+					{{ "orders.payment" | translate }}
+				</h3>
+				<p class="fw-bold">
+					{{ "orders.paymentStatus" | translate }} :
+					@if(order.isPaid){ {{ "orders.paid" | translate }} }@else{
+					{{ "orders.notPaid" | translate }} }
+				</p>
+				<p class="fw-bold">
+					{{ "orders.paymentMethod" | translate }} :
+					{{ order.paymentMethodType }}
+				</p>
+				<p class="fw-bold">
+					{{ "orders.shippingPrice" | translate }} :
+					{{ order.shippingPrice }}
+				</p>
+				<p class="fw-bold">
+					{{ "orders.taxPrice" | translate }} : {{ order.taxPrice }}
+				</p>
+				<p class="fw-bold">
+					{{ "orders.totalPrice" | translate }} :
+					<span class="text-main">{{
+						order.totalOrderPrice | currency : "EGP"
+					}}</span>
+				</p>
+			</div>
+		</div>
+		}
+	</div>
+	}
 </section>

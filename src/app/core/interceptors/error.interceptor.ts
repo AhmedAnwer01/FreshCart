@@ -18,6 +18,7 @@ export const errorInterceptor: HttpInterceptorFn = (req, next) => {
       } else if (err?.error?.message) {
         let msgError = err?.error?.message;
 
+        //Defined Error
         if (msgError === "Failed to fetch") {
           msgError = _TranslateService.instant('errors.connectionFailed');
         } else if (msgError === "There is no user registered with this email address  undefined") {
@@ -27,11 +28,19 @@ export const errorInterceptor: HttpInterceptorFn = (req, next) => {
         } else if (msgError === "Can't find this route: /api/v1/auth/resetPassword") {
           msgError = _TranslateService.instant('errors.unknownRoute');
         } else if (msgError === "Incorrect email or password") {
-          msgError = _TranslateService.instant('errors.incorrectEmailOrPassword');
-        } else {
-          msgError = _TranslateService.instant("errors.unknownError")
+          msgError = _TranslateService.instant('errors.incorrectEmailOrPassword'); 
+        }else if(msgError === "Account Already Exists"){
+          msgError = _TranslateService.instant('errors.AccountAlreadyExists');
         }
 
+        // Error is not pre-defined 
+        else if (msgError) {
+          msgError = err?.error?.message
+        } else {
+          msgError = _TranslateService.instant("error.unknownError")
+        }
+
+        // Finally Print the Error in a Toastr
         _ToastrService.error(msgError, _TranslateService.instant('errors.Error'));
       }
 
