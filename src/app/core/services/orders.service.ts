@@ -30,7 +30,7 @@ export class OrdersService {
     return this._HttpClient.get(`${APIBaseUrl}/api/v1/orders/user/${this.userData.id}`)
   }
 
-  checkOutSession(ShippingAddress: ShippingAddress, cartId: string | null): Observable<any> {
+  checkOutSession(ShippingAddress: ShippingAddress, cartId: string ): Observable<any> {
     return this._HttpClient.post(`${APIBaseUrl}/api/v1/orders/checkout-session/${cartId}?url=${serverUrl}`, ShippingAddress, {
       params: { serverUrl }
     })

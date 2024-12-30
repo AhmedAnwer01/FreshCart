@@ -7,31 +7,30 @@
 	<h2 class="text-capitalize text-center fs-4">
 		{{ "orders.noOrders" | translate }}
 	</h2>
-	<button
-		class="btn-main text-center d-block m-auto text-capitalize"
-		routerLink="\cart"
-	>
+	<button class="btn-main text-center d-block m-auto text-capitalize"
+		routerLink="\cart">
 		{{ "orders.makeOrder" | translate }}
 	</button>
-	} @else if(allOrders){
+	} @else if(allOrders.length > 0){
 	<div class="d-flex justify-content-between align-items-center row">
 		<h2 class="text-capitalize fs-2 text-main col-md-6">
 			{{ "orders.totalOrders" | translate }} : @if(ordersCount == 1){
 			{{ "orders.singleOrder" | translate }}
-			}@else if(ordersCount > 1){
-			{{ ordersCount }} {{ "orders.multipleOrders" | translate }}
+			}@else if(ordersCount > 10){
+			{{ ordersCount }} {{ "orders.MoreThanTenOrders" | translate }}
+			}@else {
+			{{ ordersCount }} {{ "orders.LessThenTenOrders" | translate }}
 			}
 		</h2>
 		<div class="d-flex align-items-center justify-content-center col-md-6">
-			<label for="filter" class="fw-bold mx-3">{{
+			<label for="filter"
+				class="fw-bold mx-3">{{
 				"orders.sortBy" | translate
 			}}</label>
-			<select
-				name="filter"
+			<select name="filter"
 				class="form-select fomr-select-sm"
 				[(ngModel)]="selectedFilter"
-				aria-label="Default select example"
-			>
+				aria-label="Default select example">
 				<option value="Latest">
 					{{ "orders.latest" | translate }}
 				</option>

@@ -60,7 +60,8 @@
 		"phoneRequired": "الهاتف فارغ",
 		"phoneInvalid": "الهاتف غير صالح",
 		"forgotPassword": "نسيت كلمة المرور؟",
-		"userNamePlaceholder": "أدخل أسمك"
+		"userNamePlaceholder": "أدخل أسمك",
+		"selectCityLabel": "مثال : القاهرة"
 	},
 	"register": {
 		"registerLabel": "سجل الآن",
@@ -134,7 +135,8 @@
 		"makeOrder": "قم بعمل طلب",
 		"totalOrders": "إجمالي الطلبات",
 		"singleOrder": "طلب واحد",
-		"multipleOrders": "طلبات",
+		"MoreThanTenOrders": "طلب",
+		"LessThenTenOrders" : "طلبات",
 		"sortBy": "ترتيب حسب",
 		"latest": "الأحدث",
 		"oldest": "الأقدم",

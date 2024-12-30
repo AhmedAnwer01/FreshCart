@@ -46,13 +46,11 @@ export class ShippingComponent implements OnInit {
         this.cartId = params.get("id")
       }
     })
-
   }
 
   onCityChanged(city: string) {
     this.selectedCity = city;
     this.shippingForm.get("city")?.setValue(this.selectedCity)
-
   }
 
   shippingForm: FormGroup = this._RxFormBuilder.group({
@@ -99,6 +97,7 @@ export class ShippingComponent implements OnInit {
       this.submitDisabled = true
     }
   }
+
   createOrder(): void {
     this._OrdersService.createOrder(this.cartId, this.shippingAddress).subscribe({
       next: (res) => {

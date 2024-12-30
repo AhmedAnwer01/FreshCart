@@ -60,7 +60,8 @@
 		"phoneRequired": "Phone is empty",
 		"phoneInvalid": "Phone is not valid",
 		"forgotPassword": "Forgot Password?",
-		"userNamePlaceholder" :"Enter Your Name"
+		"userNamePlaceholder": "Enter Your Name",
+		"selectCityLabel": "Ex : Cairo"
 	},
 	"register": {
 		"registerLabel": "Register Now",
@@ -134,7 +135,8 @@
 		"makeOrder": "Make an Order",
 		"totalOrders": "Total Orders",
 		"singleOrder": "1 Order",
-		"multipleOrders": "Orders",
+		"MoreThanTenOrders": "Orders",
+		"LessThenTenOrders": "Orders",
 		"sortBy": "Sort By",
 		"latest": "Latest",
 		"oldest": "Oldest",
@@ -205,7 +207,7 @@
 		"backendError": "Back-End error",
 		"unknownRoute": "Can't find this route: /api/v1/auth/resetPassword",
 		"incorrectEmailOrPassword": "Incorrect Email or Password Try Another Combination",
-		"AccountAlreadyExists" : "Account Already Exists" ,
+		"AccountAlreadyExists": "Account Already Exists",
 		"unknownError": "Unknown Error"
 	},
 	"success": {
