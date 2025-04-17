@@ -50,4 +50,4 @@ Built with scalability and performance in mind, FreshCart integrates a variety o
 ---
 
 ## 📎 Live Demo  
-[🔗 View Project](https://ahmedanwer01.github.io/Fresh-Cart/)  
+[🔗 View Project](https://ahmedanwer01.github.io/Fresh-Cart/](https://freshcart-ahmedanwer.netlify.app/))  
