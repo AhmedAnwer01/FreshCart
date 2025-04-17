@@ -51,3 +51,6 @@ Built with scalability and performance in mind, FreshCart integrates a variety o
 
 ## 📎 Live Demo  
 [🔗 View Project](https://freshcart-ahmedanwer.netlify.app/)  
+### Login Info:
+Email : xodameb715@janfab.com
+Password : aaaaaa
