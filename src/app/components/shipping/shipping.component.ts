@@ -40,6 +40,18 @@ export class ShippingComponent implements OnInit {
   selectedCity: string | null = null;
   submitDisabled: boolean = false
 
+  shippingForm: FormGroup = this._RxFormBuilder.group({
+
+    firstName: ['', [RxwebValidators.required(), RxwebValidators.maxLength({ value: 15 }), RxwebValidators.minLength({ value: 3 })]],
+    lastName: ['', [RxwebValidators.required(), RxwebValidators.maxLength({ value: 15 }), RxwebValidators.minLength({ value: 3 })]],
+    email: ['', [RxwebValidators.required(), RxwebValidators.email()]],
+    phone: ['', [RxwebValidators.required()]],
+    address: ['', [RxwebValidators.required(), RxwebValidators.maxLength({ value: 200 }), minLength({ value: 10 })]],
+    city: [''],
+    country: ["Egypt"]
+  })
+
+
   ngOnInit(): void {
     this._ActivatedRoute.paramMap.subscribe({
       next: (params) => {
@@ -53,24 +65,22 @@ export class ShippingComponent implements OnInit {
     this.shippingForm.get("city")?.setValue(this.selectedCity)
   }
 
-  shippingForm: FormGroup = this._RxFormBuilder.group({
 
-    firstName: ['', [RxwebValidators.required(), RxwebValidators.maxLength({ value: 15 }), RxwebValidators.minLength({ value: 3 })]],
-    lastName: ['', [RxwebValidators.required(), RxwebValidators.maxLength({ value: 15 }), RxwebValidators.minLength({ value: 3 })]],
-    email: ['', [RxwebValidators.required(), RxwebValidators.email()]],
-    phone: ['', [RxwebValidators.required()]],
-    address: ['', [RxwebValidators.required(), RxwebValidators.maxLength({ value: 200 }), minLength({ value: 10 })]],
-    city: [''],
-    country: ["Egypt"]
-  })
   ngDoCheck(): void {
 
     this.shippingInfo = this.shippingForm.value
     this.shippingInfo.phone = this.shippingForm.get("phone")?.value?.nationalNumber?.replace(" ", "")
 
 
-    this.shippingDetails = `firstName: ${this.shippingInfo?.firstName}/ lastName: ${this.shippingInfo?.lastName}/ email: ${this.shippingInfo?.email}
-    country: ${this.shippingInfo?.country}/ city: ${this.shippingInfo?.city}/ address: ${this.shippingInfo?.address}`
+    this.shippingDetails = `
+    firstName: ${this.shippingInfo?.firstName} 
+    lastName: ${this.shippingInfo?.lastName} 
+    email: ${this.shippingInfo?.email}
+    country: ${this.shippingInfo?.country} 
+    city: ${this.shippingInfo?.city} 
+    address: ${this.shippingInfo?.address}
+    `
+
     this.shippingAddress = {
       'shippingAddress': {
         'details': this.shippingDetails,
@@ -89,7 +99,6 @@ export class ShippingComponent implements OnInit {
     if (this.shippingForm.valid) {
       this._OrdersService.checkOutSession(this.shippingAddress, this.cartId).subscribe({
         next: (res) => {
-          // console.log(res);
           window.open(res.session.url, "_self")
         }
       })
@@ -101,9 +110,7 @@ export class ShippingComponent implements OnInit {
   createOrder(): void {
     this._OrdersService.createOrder(this.cartId, this.shippingAddress).subscribe({
       next: (res) => {
-        // console.log(res)
         this.allOrders.push(res.data)
-
       }
     })
   }

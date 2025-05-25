@@ -26,12 +26,13 @@ export class CartService {
   deleteProduct(id: string): Observable<any> {
     return this._HttpClient.delete(`${APIBaseUrl}/api/v1/cart/${id}`)
   }
+
   updateCartItemCount(id: string, count: number): Observable<any> {
     return this._HttpClient.put(`${APIBaseUrl}/api/v1/cart/${id}`, {
       "count": count
     })
   }
-
+  
   clearCart(): Observable<any> {
     return this._HttpClient.delete(`${APIBaseUrl}/api/v1/cart`)
   }

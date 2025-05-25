@@ -1,7 +1,18 @@
+<!--
+Use CTRL + F to find the following sections in the code:
+
+=== Page Index ===
+Section: Categories
+Section: Products
+Section: Search Products
+
+-->
+
+
 <section class="my-2 main">
     <div class="row g-0">
         <div class="col-md-9 custom-carousel main-carousel">
-            <owl-carousel-o [options]="MainCarousel">
+            <owl-carousel-o [options]="mainCarousel">
                 <ng-template carouselSlide>
                     <div>
                         <img src="./assets/images/img1.avif"
@@ -61,7 +72,7 @@
     </div>
 </section>
 
-<!-- -----------Categories-------------- -->
+<!-- Section: Categories -->
 
 <section class="my-2 custom-carousel">
     <h2>{{ 'home.popularCategories' | translate }}</h2>
@@ -82,7 +93,7 @@
     </owl-carousel-o>
 </section>
 
-<!-- ------------Products--------------- -->
+<!-- Section: Products -->
 
 <section class="p-5">
     <div class="popular-products my-5">
@@ -160,7 +171,7 @@
         </div>
     </div>
 
-    <!-- ----------------- Search Products--------------------------  -->
+    <!-- Section: Search Products -->
 
     <div class="search-products my-5">
         <h2 class="fs-1 my-3 text-capitalize">{{ 'home.searchProducts' | translate }}</h2>
@@ -180,7 +191,7 @@
                 class="btn bi bi-search text-main mx-2"></button>
             <button class="btn-outline-main"
                 (click)="toggleAutoSearch()"
-                [class]="{ 'bg-main': autoSearch, 'text-white': autoSearch }">
+                [class]="{ 'bg-main': autoSearchOn, 'text-white': autoSearchOn }">
                 {{ 'buttons.autoSearch' | translate }}
             </button>
         </div>

@@ -26,9 +26,7 @@ export class AllordersComponent implements OnInit {
 
   ngOnInit(): void {
     this._ActivatedRoute.data.subscribe((res) => {
-      // console.log(res)
       this.allOrders = res['resolver']
-      // console.log(this.allOrders)
       this.ordersCount = this.allOrders.length
 
       for (let i = 0; i < this.ordersCount; i++) {

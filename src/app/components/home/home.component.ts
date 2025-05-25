@@ -40,8 +40,10 @@ import { TranslateModule, TranslateService } from '@ngx-translate/core';
   schemas: [CUSTOM_ELEMENTS_SCHEMA]
 })
 export class HomeComponent implements OnInit, OnDestroy {
+
+  constructor() { }
+
   private readonly _ProductsService = inject(ProductsService);
-  private readonly _CategoriesService = inject(CategoriesService);
   private readonly _CartService = inject(CartService);
   private readonly _ToastrService = inject(ToastrService);
   private readonly _Router = inject(Router);
@@ -51,21 +53,38 @@ export class HomeComponent implements OnInit, OnDestroy {
   private readonly _PLATFORM_ID = inject(PLATFORM_ID)
 
 
-
-  searchedProduct: string = "";
+  // Data
   resultedProducts: IProduct[] = [];
   bestProducts: IProduct[] = []
   allProducts: IProduct[] = [];
   allCategories: ICategory[] = [];
-  isLoading: boolean = false
-  autoSearch: boolean = false
-  dir !: string
 
+  searchedProduct: string = "";
+
+  isLoading: boolean = false
+  autoSearchOn: boolean = false
+  dir !: string
+  toastr !: ActiveToast<any>
+
+  // Subscriptions
   getAllCategoriesSubscribe!: Subscription;
   getAllProductsSubscribe!: Subscription;
+
+  // Forms
+  searchForm: FormGroup = new FormGroup({
+    search: new FormControl(this.searchedProduct),
+  });
+
+  get search() {
+    return this.searchForm.get('search')?.value;
+  }
+  set search(value: string) {
+    this.searchForm.get('search')?.setValue(value);
+  }
   queryParams = {
     page: "1"
   }
+
 
   ngOnInit(): void {
 
@@ -74,7 +93,6 @@ export class HomeComponent implements OnInit, OnDestroy {
     }
     // Get Categories
     this._ActivatedRoute.data.subscribe((res) => {
-      // console.log(res);
 
       this.allCategories = res['resolver']['data']
       this.allProducts.push(...res['resolverProducts']["data"])
@@ -84,18 +102,17 @@ export class HomeComponent implements OnInit, OnDestroy {
     this._ProductsService.getAllProducts(this.queryParams).subscribe({
       next: (res) => {
         this.allProducts.push(...res.data);
-        // console.log(this.allProducts);
 
         this.resultedProducts = this.allProducts
         this.bestProducts = this.allProducts.filter((product) => {
           return product.ratingsQuantity >= 60
         })
-        // console.log(this.allProducts);
       }
     });
   }
 
-  MainCarousel: OwlOptions = {
+
+  mainCarousel: OwlOptions = {
     loop: true,
     center: true,
     autoplay: true,
@@ -121,6 +138,8 @@ export class HomeComponent implements OnInit, OnDestroy {
     ],
     nav: true,
   };
+
+
   categoriesCarousel: OwlOptions = {
     loop: true,
     autoplay: true,
@@ -160,61 +179,58 @@ export class HomeComponent implements OnInit, OnDestroy {
     nav: true,
   };
 
-  searchForm: FormGroup = new FormGroup({
-    search: new FormControl(this.searchedProduct),
-  });
+
   searchProductsAuto() {
     if (this.searchedProduct == "") {
       this.resultedProducts = this.allProducts;
-
       return
     }
-    if (this.autoSearch) {
+    if (this.autoSearchOn){
       this.resultedProducts = this.allProducts?.filter((product) => {
         return product.title
           .toLowerCase()
           .includes(this.searchedProduct.toLowerCase());
       });
-    }
   }
-  searchProducts() {
+}
 
-    this.resultedProducts = this.allProducts?.filter((product) => {
-      return product.title
-        .toLowerCase()
-        .includes(this.searchedProduct.toLowerCase());
-    });
-  }
 
-  toggleAutoSearch() {
-    if (this.autoSearch == true) {
-      this.autoSearch = false;
-    } else {
-      this.autoSearch = true;
-    }
-  }
-  toastr !: ActiveToast<any>
-  addToCart(id: string): void {
-    this.isLoading = true
+searchProducts() {
+  this.resultedProducts = this.allProducts?.filter((product) => {
+    return product.title
+      .toLowerCase()
+      .includes(this.searchedProduct.toLowerCase());
+  });
+}
+
+
+toggleAutoSearch() {
+  this.autoSearchOn = !this.autoSearchOn;
+}
+
+
+addToCart(id: string): void {
+  this.isLoading = true
     this._CartService.addProductToCart(id).subscribe({
-      next: (res) => {
+    next: (res) => {
 
-        CartService.cartCount.next(res.numOfCartItems)
-          this.toastr = this._ToastrService.success(this._TranslateService.instant("success.addedToCart"),
-            this._TranslateService.instant("header.freshCart"))
-        this.toastr.onTap.subscribe({
-          next: () => {
-            this._Router.navigate(["/cart"])
-          }
-        })
-        this.isLoading = false
-      }
-    })
-  }
+      CartService.cartCount.next(res.numOfCartItems)
+      this.toastr = this._ToastrService.success(this._TranslateService.instant("success.addedToCart"),
+        this._TranslateService.instant("header.freshCart"))
+      this.toastr.onTap.subscribe({
+        next: () => {
+          this._Router.navigate(["/cart"])
+        }
+      })
+      this.isLoading = false
+    }
+  })
+}
 
 
-  ngOnDestroy(): void {
-    this.getAllProductsSubscribe?.unsubscribe();
-    this.getAllCategoriesSubscribe?.unsubscribe();
-  }
+ngOnDestroy(): void {
+  this.getAllProductsSubscribe?.unsubscribe();
+  this.getAllCategoriesSubscribe?.unsubscribe();
+}
+
 }

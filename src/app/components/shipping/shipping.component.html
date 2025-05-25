@@ -10,7 +10,7 @@
                         class="form-control"
                         id="floatingInput"
                         placeholder="Ahmed"
-                        name="firstName"
+                        name="name"
                         formControlName="firstName"
                         [class]="{
                             'is-valid': shippingForm.get('firstName')?.valid  && ( shippingForm.get('firstName')?.touched || shippingForm.get('firstName')?.dirty ),
@@ -95,7 +95,8 @@
                 [separateDialCode]="true"
                 [enableAutoCountrySelect]="true"
                 class="phone-input"
-                name="phone"
+                name="phoneNumber"
+                type="tel"
                 formControlName="phone"
                 searchCountryPlaceholder="{{ 'shipping.searchCountry' | translate }}">
             </ngx-intl-tel-input>
