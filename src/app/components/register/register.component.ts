@@ -120,7 +120,7 @@ export class RegisterComponent implements OnDestroy {
         },
         error: (err: HttpErrorResponse) => {
           this.isLoading = false
-          this.msgError = err.error.errors?.msg || err.error.message
+          this.msgError = err.error.errors?.msg ?? err.error.message
           if (this.msgError == "Account Already Exists" || this.msgError == "accept only egypt phone numbers") {
             this.submitDisabled = true
           }

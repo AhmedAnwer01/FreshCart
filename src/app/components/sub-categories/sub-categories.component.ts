@@ -23,12 +23,10 @@ export class SubCategoriesComponent {
   ngOnInit(): void {
     this._ActivatedRoute.data.subscribe((res) => {
       this.subCategories = res['resolver'].data
-      // console.log(this.subCategories);
 
       this._ActivatedRoute.paramMap.subscribe((params) => {
         this.categoryId = params.get("categoryId")
         this._CategoriesService.getCategoryById(this.categoryId).subscribe((res) => {
-          // console.log("category", res);
           this.category = res.data
 
         })

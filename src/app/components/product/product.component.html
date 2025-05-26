@@ -1,5 +1,13 @@
+<!--
+=== Page Index ===
+Section: Filters
+Section: Product List
+Section: Pagination
+-->
+
 <section class="bg-main-light p-5 ">
     <h1 class="text-main text-center text-capitalize fs-1 my-5">{{ 'products.allProducts' | translate }}</h1>
+    <!-- Section: Filters -->
     <div class="d-flex row justify-content-start g-5 text-start"
         id="filters">
         <div class="d-flex justify-content-start align-items-center col-md-6 col-xl-4 px-0 ">
@@ -50,6 +58,7 @@
         </div>
     </div>
 
+    <!-- Section: Product List -->
     <div class="row g-4">
         <div class="search-products my-5">
             <div class="row g-4">
@@ -121,24 +130,27 @@
                     <p class="fs-5 text-capitalize text-center">{{ 'products.tryOtherProducts' | translate }}</p>
                 </div>
                 }
-                @if(!(searchedProduct != "" && resultedProducts.length < pageProductsLimit)
+                @if(!(searchedProduct != "" && resultedProducts.length < +pageProductsLimit)
                     ||
                     pageNumber
                     !=1
                     ){
-                    <pagination-controls
-                    (pageChange)="pageChanged($event); pageNumber = $event"
-                    (pageBoundsCorrection)="pageChanged($event)"
-                    [maxSize]="9"
-                    [directionLinks]="true"
-                    [autoHide]="false"
-                    [responsive]="true"
-                    previousLabel="{{ 'pagination.previous' | translate }}"
-                    nextLabel="{{ 'pagination.next' | translate }}"
-                    screenReaderPaginationLabel="{{ 'pagination.screenReader' | translate }}"
-                    screenReaderPageLabel="{{ 'pagination.page' | translate }}"
-                    screenReaderCurrentLabel="{{ 'pagination.currentPage' | translate }}"
-                    class="d-flex justify-content-end"></pagination-controls>
+                    <!--
+                    Section:
+                    Pagination
+                    -->
+                    <pagination-controls (pageChange)="pageChanged($event); pageNumber = $event"
+                        (pageBoundsCorrection)="pageChanged($event)"
+                        [maxSize]="9"
+                        [directionLinks]="true"
+                        [autoHide]="false"
+                        [responsive]="true"
+                        previousLabel="{{ 'pagination.previous' | translate }}"
+                        nextLabel="{{ 'pagination.next' | translate }}"
+                        screenReaderPaginationLabel="{{ 'pagination.screenReader' | translate }}"
+                        screenReaderPageLabel="{{ 'pagination.page' | translate }}"
+                        screenReaderCurrentLabel="{{ 'pagination.currentPage' | translate }}"
+                        class="d-flex justify-content-end"></pagination-controls>
                     }
 
             </div>

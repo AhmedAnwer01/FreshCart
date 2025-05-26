@@ -18,7 +18,6 @@ import { ShippingComponent } from './components/shipping/shipping.component';
 import { detailsResolver } from './core/guards/details.resolver';
 import { homeResolver } from './core/guards/home.resolver';
 import { cartResolver } from './core/guards/cart.resolver';
-import { Resolver } from 'dns';
 import { brandsResolver } from './core/guards/brands.resolver';
 import { SubCategoriesComponent } from './components/sub-categories/sub-categories.component';
 import { subCategoriesResolver } from './core/guards/sub-categories.resolver';
@@ -53,7 +52,7 @@ export const routes: Routes = [
 
             { path: "cart", component: CartComponent, title: "Cart", resolve: { resolver: cartResolver } },
             { path: "shipping/:id", component: ShippingComponent, title: "Check Out" },
-            { path: "allorders", component: AllordersComponent, title: "All Orders", resolve:{resolver : allordersResolver} },
+            { path: "allorders", component: AllordersComponent, title: "All Orders", resolve: { resolver: allordersResolver } },
         ]
     },
 

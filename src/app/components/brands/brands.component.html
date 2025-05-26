@@ -1,3 +1,13 @@
+<!--
+Use CTRL + F to find the following sections in the code:
+
+=== Page Index ===
+Section: Brand Search
+Section: Brand List
+Section: No Brands Message
+-->
+
+<!-- Section: Brand Search -->
 <section class="bg-main-light p-5 ">
     <h1 class="text-main text-center text-capitalize fs-1 my-5">{{ 'brands.allBrands' | translate }}</h1>
 
@@ -12,6 +22,7 @@
     </div>
     @if(searchBrands(searchedBrand)){
 
+    <!-- Section: Brand List -->
     <div class="row g-4">
         @for (brand of searchBrands(searchedBrand); track brand._id) {
         <div class="col-sm-6 col-md-4 col-xl-3">
@@ -25,6 +36,7 @@
         }
     </div>
     }
+    <!-- Section: No Brands Message -->
     @if(searchedBrand != "" && resultedBrands.length == 0) {
     <div class="noBrands text-center text-capitalize my-5">
         <h2 class=" text-main fs-4">{{ 'brands.noBrands' | translate }}</h2>

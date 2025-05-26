@@ -1,7 +1,7 @@
 import { isPlatformBrowser, NgClass } from '@angular/common';
 import { Component, inject, PLATFORM_ID } from '@angular/core';
 import { FormGroup, ReactiveFormsModule } from '@angular/forms';
-import { Router, RouterLink } from '@angular/router';
+import { Router } from '@angular/router';
 import { RxFormBuilder, RxReactiveFormsModule, RxwebValidators } from '@rxweb/reactive-form-validators';
 import { Subscription } from 'rxjs';
 import { AuthenticationService } from '../../core/services/authentication.service';
@@ -12,10 +12,14 @@ import { ToastrService } from 'ngx-toastr';
 import { TranslateModule } from '@ngx-translate/core';
 import { NgxTranslateService } from '../../core/services/ngxtranslate.service';
 
+const EMAIL_NOT_REGISTERED_ERROR = "Email is not registered";
+const CODE_NOT_CORRECT_ERROR = "code is not correct";
+export const INCORRECT_PASSWORD_ERROR = "Incorrect password";
+
 @Component({
   selector: 'app-forget-password',
   standalone: true,
-  imports: [ReactiveFormsModule, NgClass, RxReactiveFormsModule, RouterLink, TranslateModule],
+  imports: [ReactiveFormsModule, NgClass, RxReactiveFormsModule, TranslateModule],
 
   templateUrl: './forget-password.component.html',
   styleUrl: './forget-password.component.css'
@@ -64,35 +68,35 @@ export class ForgetPasswordComponent {
   emailChanged() {
     this.emailValueChangesSubscribe = this.verifyEmailForm.get("email")?.valueChanges.subscribe({
       next: () => {
-        if (this.msgError == "Email is not registered") {
-          this.msgError = ""
-          this.msgSuc = ""
-          this.submitDisabled = false
+        if (this.msgError === EMAIL_NOT_REGISTERED_ERROR) {
+          this.msgError = "";
+          this.msgSuc = "";
+          this.submitDisabled = false;
         }
       }
-    })
+    });
   }
   codeChanged() {
     this.codeValueChangesSubscribe = this.verifyCodeForm.get("resetCode")?.valueChanges.subscribe({
       next: () => {
-        if (this.msgError == "code is not correct" || this.verifyCodeForm.valid) {
-          this.msgError = ""
-          this.msgSuc = ""
-          this.submitDisabled = false
+        if (this.msgError === CODE_NOT_CORRECT_ERROR || this.verifyCodeForm.valid) {
+          this.msgError = "";
+          this.msgSuc = "";
+          this.submitDisabled = false;
         }
       }
-    })
+    });
   }
   newPasswordChanged() {
     this.newPasswordValueChangesSubscribe = this.resetPasswordForm.get("newPassword")?.valueChanges.subscribe({
       next: () => {
-        if (this.msgError == "Incorrect password") {
-          this.msgError = ""
-          this.msgSuc = ""
-          this.submitDisabled = false
+        if (this.msgError === INCORRECT_PASSWORD_ERROR) {
+          this.msgError = "";
+          this.msgSuc = "";
+          this.submitDisabled = false;
         }
       }
-    })
+    });
   }
 
 
@@ -123,11 +127,10 @@ export class ForgetPasswordComponent {
       this.isLoading = true
       this.forgotPasswordSubscribe = this._AuthenticationService.forgotPassword(this.userEmail).subscribe({
         next: (res) => {
-          // console.log(res);
-          this.msgSuc = "Verification Code is Sent to Your Email"
-          this._ToastrService.success(this.msgSuc, "FreshCart")
-          this.isLoading = false
-          this.step = 2
+          this.msgSuc = "Verification Code is Sent to Your Email";
+          this._ToastrService.success(this.msgSuc, "FreshCart");
+          this.isLoading = false;
+          this.step = 2;
           this.submitDisabled = false
         },
         error: (err) => {
@@ -145,23 +148,20 @@ export class ForgetPasswordComponent {
   verifyResetCode(): void {
 
     if (this.verifyCodeForm.valid) {
-      this.isLoading = true
-      this.submitDisabled = true
+      this.isLoading = true;
+      this.submitDisabled = true;
       this.resetCode = this.verifyCodeForm.get("resetCode")?.value;
       this.forgotPasswordSubscribe = this._AuthenticationService.verifyResetCode(this.resetCode).subscribe({
         next: (res) => {
-          console.log(res);
-          this.isLoading = false
-          this.submitDisabled = false
-          this.step = 3
-
+          this.isLoading = false;
+          this.submitDisabled = false;
+          this.step = 3;
         },
         error: (err) => {
-          this.isLoading = false
-          this.step = 3
+          this.isLoading = false;
+          this.step = 3;
         }
-      })
-
+      });
     }
   }
 
@@ -173,7 +173,6 @@ export class ForgetPasswordComponent {
     this.resetPasswordSubscribe = this._AuthenticationService.resetPassword(this.resetPasswordData).subscribe({
       next: (res) => {
 
-        // console.log(res);
         this.newToken = res.token
         localStorage.setItem("userToken", this.newToken)
         this._AuthenticationService.saveUserData()
@@ -184,8 +183,6 @@ export class ForgetPasswordComponent {
       }, error: (err) => {
         this.isLoading = false
 
-        // localStorage.setItem("userToken", this.newToken)
-        // this._AuthenticationService.saveUserData()
         this._Router.navigate(["/home"])
 
       }

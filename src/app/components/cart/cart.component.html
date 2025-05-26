@@ -1,3 +1,14 @@
+<!--
+Use CTRL + F to find the following sections in the code:
+
+=== Page Index ===
+Section: Cart Items
+Section: Cart Footer
+Section: Empty Cart Message
+Section: Clear Cart Modal
+-->
+
+<!-- Section: Cart Items -->
 <section class="bg-main-light rounded-4 p-4 shadow my-4">
     <h1 class="fs-1 text-center text-main text-capitalize">{{ 'cart.cartTitle' | translate }}</h1>
 
@@ -43,6 +54,7 @@
         }
     </div>
 
+    <!-- Section: Cart Footer -->
     <div class="cart-footer">
         <div class="d-flex justify-content-between align-items-center">
             <span>{{ 'cart.totalCartPrice' | translate }}: <span class="text-main fw-bold"> E{{ cart.data.totalCartPrice
@@ -70,6 +82,7 @@
     </div>
     }
     @else {
+    <!-- Section: Empty Cart Message -->
     <div class="w-100 text-center my-5">
         <h2 class="text-capitalize text-main">{{ 'cart.cartEmpty' | translate }}</h2>
         <h3 class="text-capitalize">{{ 'cart.addMoreProducts' | translate }}</h3>
@@ -78,6 +91,7 @@
     </div>
     }
 
+    <!-- Section: Clear Cart Modal -->
     <!-- Modal -->
     <div class="modal fade"
         id="confirmClearCart"

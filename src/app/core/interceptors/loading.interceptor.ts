@@ -1,12 +1,9 @@
-import { HttpInterceptorFn, HttpEvent } from '@angular/common/http';
+import { HttpInterceptorFn } from '@angular/common/http';
 import { inject } from '@angular/core';
-import { ResolveStart } from '@angular/router';
-import { resolveSrv } from 'dns';
 import { NgxSpinnerService } from 'ngx-spinner';
 import { ToastrService } from 'ngx-toastr';
-import { resolve } from 'path';
-import { catchError, finalize, Observable, tap, throwError } from 'rxjs';
-import { response } from 'express';
+import { catchError, finalize, tap, throwError } from 'rxjs';
+
 
 export const loadingInterceptor: HttpInterceptorFn = (req, next) => {
 

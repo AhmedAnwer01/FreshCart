@@ -1,24 +1,20 @@
 import { Component, CUSTOM_ELEMENTS_SCHEMA, inject, ChangeDetectorRef } from '@angular/core';
 import { ProductsService } from '../../core/services/products.service';
-import { IProduct, Category } from '../../core/interfaces/iproduct';
+import { IProduct } from '../../core/interfaces/iproduct';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { SearchPipe } from '../../core/pipes/search.pipe';
 import { ActivatedRoute, Router, RouterLink } from '@angular/router';
 import { SliceTextPipe } from '../../core/pipes/slice-text.pipe';
 import { CurrencyPipe } from '@angular/common';
-import { BestProductsPipe } from '../../core/pipes/best-products.pipe';
-import { ActiveToast, ToastrService } from 'ngx-toastr';
+import { ToastrService, ActiveToast } from 'ngx-toastr';
 import { CartService } from '../../core/services/cart.service';
 import { CategoriesService } from '../../core/services/categories.service';
 import { ICategory } from '../../core/interfaces/icategory';
 import { FilterCategoriesPipe } from '../../core/pipes/filter-categories.pipe';
 import { SubCategoriesService } from '../../core/services/sub-categories.service';
-import { NgxPaginationModule, PaginatePipe, PaginationService } from 'ngx-pagination';
-import { IPagination } from '../../core/interfaces/ipagination';
-import { SortByPricePipe } from '../../core/pipes/sort-by-price.pipe';
-import { filter } from 'rxjs';
-import { QueryParams } from '../../core/interfaces/query-params';
+import { NgxPaginationModule, PaginationService } from 'ngx-pagination';
 import { TranslateModule, TranslateService } from '@ngx-translate/core';
+import { IPagination } from '../../core/interfaces/ipagination';
 
 @Component({
   selector: 'app-product',
@@ -30,9 +26,8 @@ import { TranslateModule, TranslateService } from '@ngx-translate/core';
     CurrencyPipe,
     FormsModule,
     ReactiveFormsModule,
-    BestProductsPipe, FilterCategoriesPipe,
+    FilterCategoriesPipe,
     NgxPaginationModule,
-    SortByPricePipe,
     TranslateModule
   ],
   templateUrl: './product.component.html',
@@ -53,7 +48,7 @@ export class ProductComponent {
 
 
   allProducts !: IProduct[]
-  resultedProducts !: IProduct[] | any
+  resultedProducts !: IProduct[]
   allCategories !: ICategory[]
   searchedProduct: string = ""
   selectedCategory: string = ""
@@ -173,13 +168,7 @@ export class ProductComponent {
   }
 
   searchProducts(): void {
-    this.resultedProducts = SearchPipe.prototype.transform(this.allProducts, this.searchedProduct) || this.allCategories.filter((Category: ICategory) => {
-      return Category.name.toLowerCase().includes(this.searchedProduct.toLowerCase())
-    })
-
-    // return this.allProducts.filter((product) => {
-    //   return product.title.toLowerCase().includes(this.searchedProduct.toLowerCase())
-    // })
+    this.resultedProducts = SearchPipe.prototype.transform(this.allProducts, this.searchedProduct) || [];
   }
 
   toastr!: ActiveToast<any>
